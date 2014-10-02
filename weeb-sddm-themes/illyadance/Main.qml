@@ -6,16 +6,13 @@ Rectangle {
     id: container
     width: 1024
     height: 768
-
     property int sessionIndex: session.index
-
     TextConstants { id: textConstants }
 
     Connections {
         target: sddm
         onLoginSucceeded: {
         }
-
         onLoginFailed: {
             txtMessage.text = textConstants.loginFailed
             listView.currentItem.password.text = ""
@@ -36,7 +33,6 @@ Rectangle {
                 autoLoad: true
                 loops: -1
             }
-        
             VideoOutput {
                 source: mediaPlayer
                 anchors.fill: parent
@@ -68,7 +64,7 @@ Rectangle {
             anchors.horizontalCenter: parent.horizontalCenter
             id: loginBoximage
             width: 180
-            height: 68
+            height: 98
             source: "resources/login.png"
         }
         Rectangle {
@@ -76,30 +72,26 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
             width: 174
-            height: 62
+            height: 90
             color: "transparent"
-            Row {
+            
+            Column {
                 width: parent.width
+                height: parent.height
                 spacing: 2
-                Column {
-                    width: 30
-                    spacing: 2
+            
+                /*** Username ***/
+                Row {
+                    spacing: 4
                     Image {
                         id: userimage
+                        width: parent.height
                         source: "resources/power.png"
                     }
-                    Image {
-                        id: passwordimage
-                        source: "resources/reboot.png"
-                    }
-                }
-                Column {
-                    y: 6
-                    width: 140
-                    spacing: 18
                     TextInput {
                         id: name
-                        width: parent.width; height: 16
+                        y: 6
+                        width: 150; height: 16
                         horizontalAlignment: TextInput.AlignHCenter
                         text: userModel.lastUser
                         font.pixelSize: 12
@@ -111,9 +103,20 @@ Rectangle {
                             }
                         }
                     }
+                }
+                /*** Password ***/
+                Row {
+                    spacing: 4
+                    Image {
+                        id: passwordimage
+                        width: parent.height
+                        source: "resources/reboot.png"
+                    }
                     TextInput {
                         id: password
-                        width: parent.width; height: 16
+                        y: 6
+                        width: 150; height: 16
+                        horizontalAlignment: TextInput.AlignHCenter
                         echoMode: TextInput.Password
                         font.pixelSize: 12
                         autoScroll: false
@@ -126,65 +129,63 @@ Rectangle {
                         }		
                     }
                 }
-            }
-        }
-        
-        Rectangle {
-            id: actionBar
-            anchors.top: parent.top;
-            anchors.horizontalCenter: parent.horizontalCenter
-            width: parent.width; height: 20
+                /***  Buttons ***/
+                Row {
+                    spacing: 4
+                    height: 26
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    
+                    ImageButton {
+                        id: session
+                        width: parent.height
+                        source: "resources/reboot.png"
+                        
+                        onClicked: if (menu_session.state === "visible") menu_session.state = ""; else menu_session.state = "visible"
+                        KeyNavigation.backtab: password; KeyNavigation.tab: btnSuspend
+                    }
+                    ImageButton {
+                        id: btnSuspend
+                        width: parent.height
+                        x: 30
+                        source: "resources/reboot.png"
 
-            Row {
-                anchors.left: parent.left
-                anchors.margins: 0
-                height: parent.height
-                spacing: 3
+                        visible: sddm.canSuspend
+                        onClicked: sddm.suspend()
+                        KeyNavigation.backtab: session; KeyNavigation.tab: btnHibernate
+                    }
+                    ImageButton {
+                        id: btnHibernate
+                        width: parent.height
+                        source: "resources/reboot.png"
 
-                ComboBox {
-                    id: session
-                    width: 80
-                    anchors.verticalCenter: parent.verticalCenter
+                        visible: sddm.canHibernate
+                        onClicked: sddm.hibernate()
+                        KeyNavigation.backtab: btnSuspend; KeyNavigation.tab: btnReboot
+                    }
+                    ImageButton {
+                        id: btnReboot
+                        width: parent.height
+                        source: "resources/reboot.png"
 
-                    arrowIcon: "resources/arrow_down.png"
+                        visible: sddm.canReboot 
+                        onClicked: sddm.reboot()
+                        KeyNavigation.backtab: btnHibernate; KeyNavigation.tab: btnShutdown
+                    }
+                    ImageButton {
+                        id: btnShutdown
+                        width: parent.height
+                        source: "resources/power.png"
 
-                    model: sessionModel
-                    index: sessionModel.lastIndex
-
-                    font.pixelSize: 10
-
-                    KeyNavigation.backtab: password; KeyNavigation.tab: btnReboot
+                        visible: sddm.canPowerOff
+                        onClicked: sddm.powerOff()
+                        KeyNavigation.backtab: btnReboot; KeyNavigation.tab: name
+                    }
                 }
-            }
-
-            Row {
-                height: parent.height
-                anchors.right: parent.right
-                anchors.margins: 5
-                spacing: 5
-
-                ImageButton {
-                    id: btnReboot
-                    height: parent.height
-                    source: "resources/reboot.png"
-
-                    visible: sddm.canReboot
-
-                    onClicked: sddm.reboot()
-
-                    KeyNavigation.backtab: session; KeyNavigation.tab: btnShutdown
-                }
-
-                ImageButton {
-                    id: btnShutdown
-                    height: parent.height
-                    source: "resources/power.png"
-
-                    visible: sddm.canPowerOff
-
-                    onClicked: sddm.powerOff()
-
-                    KeyNavigation.backtab: btnReboot; KeyNavigation.tab: name
+                Menu {
+                        id: menu_session
+                        width: 100
+                        model: sessionModel
+                        index: sessionModel.lastIndex
                 }
             }
         }
