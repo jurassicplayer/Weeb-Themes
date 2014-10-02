@@ -65,53 +65,53 @@ Rectangle {
         /********* Login Box *********/
         Image {
             anchors.verticalCenter: parent.verticalCenter
-		    anchors.horizontalCenter: parent.horizontalCenter
-			id: loginBoximage
-			width: 180
-			height: 68
+            anchors.horizontalCenter: parent.horizontalCenter
+            id: loginBoximage
+            width: 180
+            height: 68
             source: "resources/login.png"
         }
         Rectangle {
-		    id: loginBox
-		    anchors.verticalCenter: parent.verticalCenter
-		    anchors.horizontalCenter: parent.horizontalCenter
-		    width: 174
-		    height: 62
-		    color: "transparent"
-		    Row {
-		        width: parent.width
-		        spacing: 2
-		        Column {
-		            width: 30
-		            spacing: 2
-    		        Image {
-	    	            id: userimage
+            id: loginBox
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: 174
+            height: 62
+            color: "transparent"
+            Row {
+                width: parent.width
+                spacing: 2
+                Column {
+                    width: 30
+                    spacing: 2
+                    Image {
+                        id: userimage
                         source: "resources/power.png"
-		            }
-		            Image {
-	    	            id: passwordimage
+                    }
+                    Image {
+                        id: passwordimage
                         source: "resources/reboot.png"
-		            }
-		        }
-		        Column {
-		            y: 6
-		            width: 140
-		            spacing: 18
-		            TextInput {
-						id: name
-						width: parent.width; height: 16
-						horizontalAlignment: TextInput.AlignHCenter
-						text: userModel.lastUser
-						font.pixelSize: 12
-						KeyNavigation.backtab: btnShutdown; KeyNavigation.tab: password
-						Keys.onPressed: {
-							if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
-								sddm.login(name.text, password.text, session.index)
-								event.accepted = true
-							}
-						}
-					}
-					TextInput {
+                    }
+                }
+                Column {
+                    y: 6
+                    width: 140
+                    spacing: 18
+                    TextInput {
+                        id: name
+                        width: parent.width; height: 16
+                        horizontalAlignment: TextInput.AlignHCenter
+                        text: userModel.lastUser
+                        font.pixelSize: 12
+                        KeyNavigation.backtab: btnShutdown; KeyNavigation.tab: password
+                        Keys.onPressed: {
+                            if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
+                                sddm.login(name.text, password.text, session.index)
+                                event.accepted = true
+                            }
+                        }
+                    }
+                    TextInput {
                         id: password
                         width: parent.width; height: 16
                         echoMode: TextInput.Password
@@ -125,9 +125,9 @@ Rectangle {
                             }
                         }		
                     }
-		        }
-		    }
-		}
+                }
+            }
+        }
         
         Rectangle {
             id: actionBar
