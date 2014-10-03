@@ -86,7 +86,7 @@ Rectangle {
                     Image {
                         id: userimage
                         width: parent.height
-                        source: "resources/power.png"
+                        source: "resources/user.png"
                     }
                     TextInput {
                         id: name
@@ -110,7 +110,7 @@ Rectangle {
                     Image {
                         id: passwordimage
                         width: parent.height
-                        source: "resources/reboot.png"
+                        source: "resources/passwd.png"
                     }
                     TextInput {
                         id: password
@@ -138,7 +138,7 @@ Rectangle {
                     ImageButton {
                         id: session
                         width: parent.height
-                        source: "resources/reboot.png"
+                        source: "resources/session.png"
                         
                         onClicked: if (menu_session.state === "visible") menu_session.state = ""; else menu_session.state = "visible"
                         KeyNavigation.backtab: password; KeyNavigation.tab: btnSuspend
@@ -147,7 +147,7 @@ Rectangle {
                         id: btnSuspend
                         width: parent.height
                         x: 30
-                        source: "resources/reboot.png"
+                        source: "resources/suspend.png"
 
                         visible: sddm.canSuspend
                         onClicked: sddm.suspend()
@@ -156,7 +156,7 @@ Rectangle {
                     ImageButton {
                         id: btnHibernate
                         width: parent.height
-                        source: "resources/reboot.png"
+                        source: "resources/hibernate.png"
 
                         visible: sddm.canHibernate
                         onClicked: sddm.hibernate()
