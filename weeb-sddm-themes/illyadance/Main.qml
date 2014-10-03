@@ -63,13 +63,14 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
             id: loginBoximage
-            width: 180
-            height: 98
+            width: 192
+            height: 79
             source: "resources/login.png"
         }
         Rectangle {
             id: loginBox
-            anchors.verticalCenter: parent.verticalCenter
+            anchors.top: loginBoximage.top
+            anchors.topMargin: 6
             anchors.horizontalCenter: parent.horizontalCenter
             width: 174
             height: 90
@@ -78,21 +79,21 @@ Rectangle {
             Column {
                 width: parent.width
                 height: parent.height
-                spacing: 2
+                spacing: 6
             
                 /*** Username ***/
                 Row {
-                    spacing: 4
+                    spacing: 8
+                    height: 30
                     Image {
                         id: userimage
-                        width: parent.height
+                        width: parent.height; height: parent.height
                         source: "resources/user.png"
                     }
                     TextInput {
                         id: name
-                        y: 6
+                        y: 7
                         width: 150; height: 16
-                        horizontalAlignment: TextInput.AlignHCenter
                         text: userModel.lastUser
                         font.pixelSize: 12
                         KeyNavigation.backtab: btnShutdown; KeyNavigation.tab: password
@@ -106,17 +107,17 @@ Rectangle {
                 }
                 /*** Password ***/
                 Row {
-                    spacing: 4
+                    spacing: 8
+                    height: 30
                     Image {
                         id: passwordimage
-                        width: parent.height
+                        width: parent.height; height: parent.height
                         source: "resources/passwd.png"
                     }
                     TextInput {
                         id: password
-                        y: 6
+                        y: 7
                         width: 150; height: 16
-                        horizontalAlignment: TextInput.AlignHCenter
                         echoMode: TextInput.Password
                         font.pixelSize: 12
                         autoScroll: false
@@ -131,6 +132,7 @@ Rectangle {
                 }
                 /***  Buttons ***/
                 Row {
+                    y: 30
                     spacing: 4
                     height: 26
                     anchors.horizontalCenter: parent.horizontalCenter
