@@ -22,6 +22,16 @@ Rectangle {
     /********************************
                Background
     *********************************/
+    Rectangle {
+		anchors.fill: parent
+		color: "transparent"
+		Image {
+			id: background
+			anchors.fill: parent
+			source: "background.png"
+			fillMode: Image.PreserveAspectCrop
+		}
+    }
     Repeater {
         model: screenModel
         Item {
