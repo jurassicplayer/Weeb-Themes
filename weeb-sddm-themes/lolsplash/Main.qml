@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import SddmComponents 2.0
 import QtMultimedia 5.0
+import Qt.labs.settings 1.0
 
 Rectangle {
     id: container
@@ -18,6 +19,26 @@ Rectangle {
             listView.currentItem.password.text = ""
         }
     }
+    /********** Save Settings ***********/
+    Item {
+			id: page
+			state: settings.state
+			states: [
+				State {
+				    name: "active"
+				},
+				State {
+					name: "inactive"
+				}
+			]
+			Settings {
+				id: settings
+				property string state: " active"
+			}
+			Component.onDestruction: {
+				settings.state = page.state
+			}
+		}
 
     /********************************
                Background
@@ -39,22 +60,93 @@ Rectangle {
             MediaPlayer {
                 id: mediaPlayer
                 source: "resources/vid.mp4"
-                autoPlay: true
-                autoLoad: true
+                autoPlay: bgtogglearea.bgAnimation ? false : true
+                autoLoad: bgtogglearea.bgAnimation ? false : true
                 loops: -1
             }
             VideoOutput {
+				id: videoPlayer
                 source: mediaPlayer
                 anchors.fill: parent
                 fillMode: VideoOutput.PreserveAspectCrop
             }
             Audio {
 				id: musicPlayer
-				autoPlay: true
-				autoLoad: true
+				autoPlay: musictogglearea.musicPlay ? false : true
+				autoLoad: musictogglearea.musicPlay ? false : true
 				source: "resources/bgm.mp3"
 				loops: -1
             }
+            Column {
+				anchors.bottom: parent.bottom
+				x: 16
+				height: 68
+				spacing: 6
+				Row {
+					spacing: 8
+					Image {
+						id: musicToggle
+						source: musictogglearea.musicPlay ? (musictogglearea.containsMouse || musictogglearea.focus ? "resources/checked-hover.png" : "resources/checked-unpressed.png") : (musictogglearea.containsMouse || musictogglearea.focus ? "resources/unchecked-hover.png" : "resources/unchecked-unpressed.png")
+						MouseArea {
+							id: musictogglearea
+							anchors.top: parent.top
+							anchors.bottom: parent.bottom
+							width: 120
+							property string musicPlay
+							hoverEnabled: true
+							onPressed: if (musicPlay) { 
+								musicPlay = ""
+								musicPlayer.play();
+							} else {
+								musicPlay = "true"
+								musicPlayer.stop();
+							}
+							KeyNavigation.backtab: bgtogglearea; KeyNavigation.tab: bgtogglearea
+							Settings {
+								property alias musicPlay: musictogglearea.musicPlay
+							}
+						}
+					}
+					Text {
+						y: 2
+						font.pixelSize: 10
+						color: "white"
+						text: "Disable Login Music"
+					}
+				}
+				Row {
+					spacing: 8
+					Image {
+						id: bgToggle
+						source: bgtogglearea.bgAnimation ? ( bgtogglearea.containsMouse || bgtogglearea.focus ? "resources/checked-hover.png" : "resources/checked-unpressed.png" ) : ( bgtogglearea.containsMouse || bgtogglearea.focus ? "resources/unchecked-hover.png" : "resources/unchecked-unpressed.png" )
+						MouseArea {
+							id: bgtogglearea
+							anchors.top: parent.top
+							anchors.bottom: parent.bottom
+							width: 150
+							property string bgAnimation
+							hoverEnabled: true
+							onPressed: if (bgAnimation) { 
+								bgAnimation = ""
+								mediaPlayer.play();
+							} else {
+								bgAnimation = "true"
+								mediaPlayer.stop();
+							}
+							KeyNavigation.backtab: musictogglearea; KeyNavigation.tab: musictogglearea
+							Settings {
+								property alias bgAnimation: bgtogglearea.bgAnimation
+							}
+						}
+					}
+					Text {
+						y: 2
+						font.pixelSize: 10
+						color: "white"
+						text: "Disable Menu Animations"
+					}
+				}
+            }   
         }
     }
 
@@ -65,7 +157,7 @@ Rectangle {
         property variant geometry: screenModel.geometry(screenModel.primary)
         x: geometry.x; y: geometry.y; width: geometry.width; height: geometry.height
         color: "transparent"
-
+		
         /********* Logo *********/
         Image {
             id: logo
