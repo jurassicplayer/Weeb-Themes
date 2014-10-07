@@ -1,0 +1,80 @@
+# GmnBox | obliviousgmn.deviantart.com
+# Clean & Simple Openbox Theme
+# Only Customizes Menus, OSD and Window Decorations!
+#
+# March 24, 2013 Updated. Fixed title labels and buttons.
+# No previous OBconf tweak required
+# Enjoy! Mod to your liking!!
+#
+# Palette..
+# BG:    #191C23
+# Bar:   #323241
+# Text:  #5CE6E6
+
+# Menu 
+!! Menu background
+menu.items.bg: flat gradient vertical
+menu.items.bg.color: #303030
+menu.items.bg.colorTo: #080808
+
+!! Menu text
+menu.items.text.color: #b8b8b8
+menu.items.justify: left
+menu.items.disabled.text.color: #606060
+
+!! Menu headers
+menu.title.bg: raised splitvertical gradient
+menu.title.bg.color: #9F7EBE
+menu.title.bg.colorTo: #895DA9
+menu.title.text.color: white
+menu.title.text.justify: center
+
+!! Selected menu item
+menu.items.active.bg: raised splitvertical gradient
+menu.items.active.bg.color: #00BD72
+menu.items.active.bg.colorTo: #00945B
+menu.items.active.text.color: #FFFFFF
+
+
+#menu.items.text.color: #5CE6E6
+menu.overlap.x: 0
+#menu.separator.color: #323241
+#menu.border.color: #111111
+#*.title.text.justify: left
+
+# OSD
+osd.*.bg: gradient splitvertical flat
+osd.*.bg.color: #303030
+osd.*.bg.colorTo: #181818
+osd.hilight.bg: gradient vertical flat
+osd.hilight.bg.color: #00E48B
+osd.hilight.bg.colorTo: #00945B
+osd.*.text.color: #D6D6D6
+
+# Padding
+padding.height: 0
+padding.width: 0
+
+#Window
+border.width: 1
+window.handle.width: 0
+window.client.padding.width: 0
+window.*.title.bg: raised splitvertical gradient
+window.*.title.bg.color: #303030
+window.*.title.bg.colorTo: #181818
+window.*.title.separator.color: #191C23
+window.inactive.border.color: #625F5F
+#window.active.border.color: #9A9A9A
+
+#Tweaks
+window.*.label.bg: parentrelative
+window.*.button.*.bg: parentrelative
+window.*.text.justify: center
+window.active.label.text.color: #D4D4D4
+window.inactive.label.text.color: #9D9D9D
+window.*.button.*.unpressed.image.color: #005836
+window.*.button.*.hover.image.color: #FF925B
+window.*.button.*.pressed.image.color: #00E48B
+
+#Shadow, Small shadow to menu font
+menu.items.font: shadow=y:shadowoffset=1:shadowtint=25

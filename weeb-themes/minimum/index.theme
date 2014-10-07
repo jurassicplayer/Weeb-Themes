@@ -1,0 +1,9 @@
+[X-GNOME-Metatheme]
+Name=Minimum
+Type=X-GNOME-Metatheme
+Comment=A minimal theme
+Encoding=UTF-8
+GtkTheme=Minimum
+IconTheme=gnome
+CursorTheme=Adwaita
+CursorSize=24
