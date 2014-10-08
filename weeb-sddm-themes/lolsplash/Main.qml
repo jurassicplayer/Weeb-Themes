@@ -74,7 +74,7 @@ Rectangle {
 				id: musicPlayer
 				autoPlay: musictogglearea.musicPlay ? false : true
 				autoLoad: musictogglearea.musicPlay ? false : true
-				source: "resources/bgm.mp3"
+				source: "resources/bgm.ogg"
 				loops: -1
             }
             Column {
