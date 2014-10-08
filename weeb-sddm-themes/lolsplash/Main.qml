@@ -59,7 +59,7 @@ Rectangle {
             anchors.fill: parent
             MediaPlayer {
                 id: mediaPlayer
-                source: "resources/vid.mp4"
+                source: "resources/vid.webm"
                 autoPlay: bgtogglearea.bgAnimation ? false : true
                 autoLoad: bgtogglearea.bgAnimation ? false : true
                 loops: -1
