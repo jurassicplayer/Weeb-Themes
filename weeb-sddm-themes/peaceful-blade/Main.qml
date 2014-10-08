@@ -37,7 +37,7 @@ Rectangle {
 		id: musicPlayer
 		autoPlay: true
 		autoLoad: true
-		source: "resources/bgm.mp3"
+		source: "resources/bgm.ogg"
 		loops: -1
     }
     ParticleSystem {
