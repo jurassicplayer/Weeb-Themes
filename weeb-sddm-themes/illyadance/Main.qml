@@ -38,7 +38,7 @@ Rectangle {
             anchors.fill: parent
             MediaPlayer {
                 id: mediaPlayer
-                source: "resources/vid.mp4"
+                source: "resources/vid.webm"
                 autoPlay: true
                 autoLoad: true
                 loops: -1
