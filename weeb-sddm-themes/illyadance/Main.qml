@@ -23,31 +23,28 @@ Rectangle {
                Background
     *********************************/
     Rectangle {
-		anchors.fill: parent
-		color: "transparent"
-		Image {
-			id: background
-			anchors.fill: parent
-			source: "background.png"
-			fillMode: Image.PreserveAspectCrop
-		}
-    }
-    Repeater {
-        model: screenModel
-        Item {
+        anchors.fill: parent
+        color: "transparent"
+        Image {
+            id: background
             anchors.fill: parent
-            MediaPlayer {
-                id: mediaPlayer
-                source: "resources/vid.webm"
-                autoPlay: true
-                autoLoad: true
-                loops: -1
-            }
-            VideoOutput {
-                source: mediaPlayer
-                anchors.fill: parent
-                fillMode: VideoOutput.PreserveAspectCrop
-            }
+            source: "background.png"
+            fillMode: Image.PreserveAspectCrop
+        }
+    }
+    Item {
+        anchors.fill: parent
+        MediaPlayer {
+            id: mediaPlayer
+            source: "resources/vid.webm"
+            autoPlay: true
+            autoLoad: true
+            loops: -1
+        }
+        VideoOutput {
+            source: mediaPlayer
+            anchors.fill: parent
+            fillMode: VideoOutput.PreserveAspectCrop
         }
     }
 
@@ -137,7 +134,7 @@ Rectangle {
                                 sddm.login(name.text, password.text, session.index)
                                 event.accepted = true
                             }
-                        }		
+                        }       
                     }
                 }
                 /***  Buttons ***/
