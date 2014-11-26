@@ -106,10 +106,6 @@ Rectangle {
             id: loginBox
             anchors.fill: parent
             color: "transparent"
-            /** Image {
-                anchors.fill: parent
-                source: "resources/login.png"
-            } **/
             Column {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
