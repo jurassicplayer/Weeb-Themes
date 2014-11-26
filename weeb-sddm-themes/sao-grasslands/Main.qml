@@ -107,7 +107,7 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
             width: 200
-            height: 237
+            height: 80
             color: "transparent"
             /** Image {
                 anchors.fill: parent
@@ -163,7 +163,7 @@ Rectangle {
                         echoMode: TextInput.Password
                         font.pixelSize: 12
                         autoScroll: false
-                        KeyNavigation.backtab: name; KeyNavigation.tab: session
+                        KeyNavigation.backtab: name; KeyNavigation.tab: btnSession
                         Keys.onPressed: {
                             if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
                                 sddm.login(name.text, password.text, session.index)
@@ -199,7 +199,7 @@ Rectangle {
 
                 visible: sddm.canSuspend
                 onClicked: sddm.suspend()
-                KeyNavigation.backtab: session; KeyNavigation.tab: btnHibernate
+                KeyNavigation.backtab: btnSession; KeyNavigation.tab: btnHibernate
             }
             ImageButton {
                 id: btnHibernate
