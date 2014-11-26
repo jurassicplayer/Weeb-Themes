@@ -1,0 +1,16 @@
+[SddmGreeterTheme]
+Name=Peaceful Saber
+Description=Peaceful Saber Theme
+Author=Jurassicplayer
+Copyright=(c) 2014, Jurassicplayer
+License=None
+Type=sddm-theme
+Version=1.0
+Website=https://github.com/jurassicplayer/Weeaboository
+Screenshot=screenshot.jpg
+MainScript=Main.qml
+ConfigFile=theme.conf
+TranslationsDirectory=translations
+Email=jurassicplayer75@gmail.com
+Theme-Id=peacefulsaber
+Theme-API=2.0
