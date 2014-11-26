@@ -104,20 +104,17 @@ Rectangle {
         /********* Login Box *********/
         Rectangle {
             id: loginBox
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
-            width: 200
-            height: 80
+            anchors.fill: parent
             color: "transparent"
             /** Image {
                 anchors.fill: parent
                 source: "resources/login.png"
             } **/
             Column {
-                anchors.top: parent.top
-                anchors.topMargin: 7
-                width: parent.width
-                height: parent.height-20
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: 200
+                height: 80
                 spacing: 6
             
                 /*** Username ***/
@@ -163,7 +160,7 @@ Rectangle {
                         echoMode: TextInput.Password
                         font.pixelSize: 12
                         autoScroll: false
-                        KeyNavigation.backtab: name; KeyNavigation.tab: btnSession
+                        KeyNavigation.backtab: name; KeyNavigation.tab: session
                         Keys.onPressed: {
                             if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
                                 sddm.login(name.text, password.text, session.index)
@@ -173,70 +170,70 @@ Rectangle {
                     }
                 }
             }
-        }
-        /***  Buttons ***/
-        Column {
-            id: buttons
-            anchors.top: parent.top
-            anchors.topMargin: parent.height*0.10
-            anchors.left: parent.left
-            anchors.leftMargin: parent.width*0.05
-            spacing: 4
-            height: 26
-                        
-            ImageButton {
-                id: btnSession
-                width: parent.height
-                source: "resources/session.png"
-                
-                onClicked: if (menu_session.state === "visible") menu_session.state = ""; else menu_session.state = "visible"
-                KeyNavigation.backtab: password; KeyNavigation.tab: btnSuspend
-            }
-            ImageButton {
-                id: btnSuspend
-                width: parent.height
-                source: "resources/suspend.png"
+            /***  Buttons ***/
+            Column {
+                id: buttons
+                anchors.top: parent.top
+                anchors.topMargin: parent.height*0.10
+                anchors.left: parent.left
+                anchors.leftMargin: parent.width*0.05
+                spacing: 4
+                height: 26
+                            
+                ImageButton {
+                    id: session
+                    width: parent.height
+                    source: "resources/session.png"
+                    
+                    onClicked: if (menu_session.state === "visible") menu_session.state = ""; else menu_session.state = "visible"
+                    KeyNavigation.backtab: password; KeyNavigation.tab: btnSuspend
+                }
+                ImageButton {
+                    id: btnSuspend
+                    width: parent.height
+                    source: "resources/suspend.png"
 
-                visible: sddm.canSuspend
-                onClicked: sddm.suspend()
-                KeyNavigation.backtab: btnSession; KeyNavigation.tab: btnHibernate
-            }
-            ImageButton {
-                id: btnHibernate
-                width: parent.height
-                source: "resources/hibernate.png"
+                    visible: sddm.canSuspend
+                    onClicked: sddm.suspend()
+                    KeyNavigation.backtab: session; KeyNavigation.tab: btnHibernate
+                }
+                ImageButton {
+                    id: btnHibernate
+                    width: parent.height
+                    source: "resources/hibernate.png"
 
-                visible: sddm.canHibernate
-                onClicked: sddm.hibernate()
-                KeyNavigation.backtab: btnSuspend; KeyNavigation.tab: btnReboot
-            }
-            ImageButton {
-                id: btnReboot
-                width: parent.height
-                source: "resources/reboot.png"
+                    visible: sddm.canHibernate
+                    onClicked: sddm.hibernate()
+                    KeyNavigation.backtab: btnSuspend; KeyNavigation.tab: btnReboot
+                }
+                ImageButton {
+                    id: btnReboot
+                    width: parent.height
+                    source: "resources/reboot.png"
 
-                visible: sddm.canReboot
-                onClicked: sddm.reboot()
-                KeyNavigation.backtab: btnHibernate; KeyNavigation.tab: btnShutdown
-            }
-            ImageButton {
-                id: btnShutdown
-                width: parent.height
-                source: "resources/power.png"
+                    visible: sddm.canReboot
+                    onClicked: sddm.reboot()
+                    KeyNavigation.backtab: btnHibernate; KeyNavigation.tab: btnShutdown
+                }
+                ImageButton {
+                    id: btnShutdown
+                    width: parent.height
+                    source: "resources/power.png"
 
-                visible: sddm.canPowerOff
-                onClicked: sddm.powerOff()
-                KeyNavigation.backtab: btnReboot; KeyNavigation.tab: name
+                    visible: sddm.canPowerOff
+                    onClicked: sddm.powerOff()
+                    KeyNavigation.backtab: btnReboot; KeyNavigation.tab: name
+                }
             }
-        }
-        Menu {
-            id: menu_session
-            anchors.left: buttons.right
-            anchors.top: buttons.verticalCenter
-            anchors.leftMargin: 6
-            width: 100
-            model: sessionModel
-            index: sessionModel.lastIndex
+            Menu {
+                id: menu_session
+                anchors.left: buttons.right
+                anchors.top: buttons.verticalCenter
+                anchors.leftMargin: 6
+                width: 100
+                model: sessionModel
+                index: sessionModel.lastIndex
+            }
         }
     }
 }
