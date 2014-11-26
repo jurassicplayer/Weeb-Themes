@@ -56,7 +56,7 @@ padding.height: 0
 padding.width: 0
 
 #Window
-border.width: 1
+border.width: 2
 window.handle.width: 0
 window.client.padding.width: 0
 window.*.title.bg: raised splitvertical gradient
