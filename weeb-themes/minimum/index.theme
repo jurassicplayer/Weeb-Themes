@@ -1,9 +1,9 @@
 [X-GNOME-Metatheme]
-Name=Minimum
+Name=Minimum Miku
 Type=X-GNOME-Metatheme
-Comment=A minimal theme
+Comment=A minimal Hatsune Miku theme
 Encoding=UTF-8
-GtkTheme=Minimum
+GtkTheme=Minimum Miku
 IconTheme=gnome
 CursorTheme=Adwaita
-CursorSize=24
+CursorSize=16
