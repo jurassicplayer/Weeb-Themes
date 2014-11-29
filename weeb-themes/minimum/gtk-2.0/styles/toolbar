@@ -1,0 +1,66 @@
+style "toolbar"
+{
+xthickness=6
+ythickness=4
+engine "pixmap"
+{
+image
+{
+	function=BOX
+	file="/Toolbar/toolbar.png"
+	border={4,4,4,4}
+	stretch=TRUE
+}}}
+widget_class "*HandleBox"		style "toolbar"
+class "*HandleBox"			style "toolbar"
+widget_class "*Toolbar"			style "toolbar"
+class "*Toolbar"			style "toolbar"
+style "toolbuttons"="default"
+{
+xthickness=2
+ythickness=2
+
+GtkWidget::focus_padding=2
+engine "pixmap" {
+      
+image
+		{
+			function        		= BOX
+			recolorable     		= TRUE
+			state					= NORMAL
+			file            			= "Toolbar/toolbutton-normal.png"
+			border          		= { 6, 6, 6, 6 }
+			stretch         		= TRUE
+		}
+image
+		{
+			function        		= BOX
+			recolorable     		= TRUE
+			state					= PRELIGHT
+			file            			= "Toolbar/toolbutton-prelight.png"
+			border          		= { 6, 6, 6, 6 }
+			stretch         		= TRUE
+		}
+image
+		{
+			function        		= BOX
+			recolorable     		= TRUE
+			state					= ACTIVE
+			file            			= "Toolbar/toolbutton-pressed.png"
+			border          		= { 6, 6, 6, 6 }
+			stretch         		= TRUE
+		}  
+image
+		{
+			function        		= BOX
+			recolorable     		= TRUE
+			state					= INSENSITIVE
+			file            			= "Toolbar/toolbutton-normal.png"
+			border          		= { 6, 6, 6, 6 }
+			stretch         		= TRUE
+		}  
+	}
+}
+widget_class "*Tool*GtkToggleButton" style "toolbuttons"
+widget_class "*Tool*GtkButton" style "toolbuttons"
+

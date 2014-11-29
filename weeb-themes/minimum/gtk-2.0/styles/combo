@@ -1,0 +1,78 @@
+style "combo"		= "default"
+{
+  base[INSENSITIVE] = "#242424"
+  xthickness			= 2
+  ythickness			= 2
+  GtkWidget::interior_focus	= 0
+  engine "pixmap"
+  {
+    image
+    {
+      function			= BOX
+      recolorable		= TRUE
+      state				= PRELIGHT
+      file				= "Combo/combo-prelight.png"
+      border			= { 4, 4, 4, 4 }
+      stretch			= TRUE
+    }
+    image
+    {
+      function			= BOX
+      recolorable		= TRUE
+      state				= NORMAL
+      file				= "Combo/combo-normal.png"
+      border			= { 4, 4, 4, 4 }
+      stretch			= TRUE
+    }
+
+  image
+    {
+      function			= BOX
+      recolorable		= TRUE
+      state				= ACTIVE
+      file				= "Combo/combo-pressed.png"
+      border			= { 4, 4, 4, 4 }
+      stretch			= TRUE
+    }
+ image
+    {
+      function			= BOX
+      recolorable		= TRUE
+      state				= INSENSITIVE
+      file				= "Combo/combo-inactive.png"
+      border			= { 4, 4, 4, 4 }
+      stretch			= TRUE
+    }
+    image
+    {
+      function			= TAB
+      state				= INSENSITIVE
+      recolorable		= TRUE
+      overlay_file		= "Combo/combo-arrow-insens.png"
+      overlay_stretch	= FALSE
+    }
+    image
+    {
+      function				= TAB
+      recolorable			= TRUE
+      state					= NORMAL
+      overlay_file			= "Combo/combo-arrow.png"
+      overlay_border	= { 0, 0, 0, 0 }
+      overlay_stretch	= FALSE
+    }
+  image
+    {
+      function				= TAB
+      recolorable			= TRUE
+      state					= PRELIGHT
+      overlay_file			= "Combo/combo-arrow-prelight.png"
+      overlay_border	= { 0, 0, 0, 0 }
+      overlay_stretch	= FALSE
+    }
+  }
+}
+
+class "GtkCombo*"      			style "combo"
+widget_class "*Combo*" style "combo"
+
+
