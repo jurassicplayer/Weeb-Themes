@@ -1,5 +1,4 @@
 import QtQuick 2.0
-import QtQuick.Particles 2.0
 import SddmComponents 2.0
 import QtMultimedia 5.0
 
@@ -32,9 +31,6 @@ Rectangle {
             source: "background.png"
             fillMode: Image.PreserveAspectCrop
         }
-    }
-    Item {
-        anchors.fill: parent
         MediaPlayer {
             id: mediaPlayer
             source: "resources/vid.mp4"
@@ -55,44 +51,7 @@ Rectangle {
         source: "resources/bgm.ogg"
         loops: -1
     }
-    ParticleSystem {
-        id: bgparticle
-    }
-
-    Emitter {
-        anchors.fill: parent
-        system: bgparticle
-        emitRate: 80
-        lifeSpan: 4000
-        lifeSpanVariation: 2000
-        size: 3
-        sizeVariation: 8
-        endSize: 3
-        startTime: 1000
-        velocity: AngleDirection{
-            angle: 270
-            angleVariation: 30
-            magnitude: 40
-            magnitudeVariation: 20
-        }
-        ImageParticle {
-            anchors.fill: parent
-            system: bgparticle
-            source: "resources/lightparticle.png"
-        }
-        Attractor {
-            system: bgparticle
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenterOffset: parent.width*0.08
-            anchors.verticalCenterOffset: -parent.height*0.1
-            width: parent.width*0.5; height: 200
-            pointX: parent.width*0.25
-            pointY: 0
-            strength: 0.2
-        }
-    }
-
+    
     /*******************************
                Foreground
     ********************************/

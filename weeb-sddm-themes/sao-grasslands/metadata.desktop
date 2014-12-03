@@ -1,11 +1,11 @@
 [SddmGreeterTheme]
 Name=SAO Grasslands
-Description=SAO Theme
+Description=SAO Grasslands Theme
 Author=Jurassicplayer
 Copyright=(c) 2014, Jurassicplayer
 License=None
 Type=sddm-theme
-Version=0.1
+Version=1.0
 Website=https://github.com/jurassicplayer/Weeaboository
 Screenshot=screenshot.jpg
 MainScript=Main.qml
