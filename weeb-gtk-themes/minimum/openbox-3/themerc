@@ -1,0 +1,153 @@
+#----------------------------------------#
+# Minimum Miku 
+# A minimalist Hatsune Miku openbox theme
+# 
+# http://github.com/jurassicplayer/Weeaboository
+# Created by Jurassicplayer.
+#----------------------------------------#
+
+!!---- Menu ----!!
+#------------------- Geometry -------------------------------------#
+menu.border.width:                                       1
+menu.separator.width:                                    1
+menu.separator.padding.width:                            4
+menu.separator.padding.height:                           2
+menu.overlap.x:                                          0
+menu.overlap.y:                                          0
+#------------------- Background -----------------------------------#
+menu.title.bg:                                           Gradient SplitVertical Raised
+menu.items.bg:                                           Gradient Vertical Flat
+menu.items.active.bg:                                    Gradient SplitVertical Raised
+#------------------- Color ----------------------------------------#
+menu.border.color:                                       #000000
+menu.title.bg.color:                                     #F28581
+menu.title.bg.colorTo:                                   #BD5463
+menu.items.bg.color:                                     #202020
+menu.items.bg.colorTo:                                   #252525
+menu.items.active.bg.color:                              #00C778
+menu.items.active.bg.colorTo:                            #009A5F
+menu.title.text.color:                                   #ffffff
+menu.items.text.color:                                   #909090
+menu.items.active.text.color:                            #ffffff
+menu.items.disabled.text.color:                          #555555
+menu.items.active.disabled.text.color:                   #555555
+menu.separator.color:                                    #555555
+#------------------- Font -----------------------------------------#
+menu.title.text.justify:                                 Center
+menu.title.text.font:                                    shadow=n:shadowtint=70:shadowoffset=1
+menu.items.font:                                         shadow=n:shadowtint=70:shadowoffset=1
+
+
+!!---- OSD ----!!
+#------------------- Geometry -------------------------------------#
+osd.border.width:                                        1
+#------------------- Background -----------------------------------#
+osd.bg:                                                  Gradient SplitVertical Flat
+osd.label.bg:                                            Gradient SplitVertical Flat
+osd.hilight.bg:                                          Gradient SplitVertical Flat
+osd.unhilight.bg:                                        Gradient SplitVertical Flat
+#------------------- Color ----------------------------------------#
+osd.border.color:                                        #000000
+osd.bg.color:                                            #252525
+osd.bg.colorTo:                                          #202020
+osd.label.bg.color:                                      #252525
+osd.label.bg.colorTo:                                    #202020
+osd.hilight.bg.color:                                    #00C778
+osd.hilight.bg.colorTo:                                  #009A5F
+osd.unhilight.bg.color:                                  #252525
+osd.unhilight.bg.colorTo:                                #202020
+osd.label.text.color:                                    #909090
+#------------------- Font -----------------------------------------#
+osd.label.text.font:                                     shadow=n:shadowtint=70:shadowoffset=1
+
+
+!!---- Window Generic ----!!
+#------------------- Geometry -------------------------------------#
+border.width:                                            1
+window.client.padding.width:                             0
+window.client.padding.height:                            0
+window.handle.width:                                     1
+padding.width:                                           0
+padding.height:                                          0
+#------------------- Color ----------------------------------------#
+border.color:                                            #000000
+#------------------- Font -----------------------------------------#
+window.label.text.justify:                               Center
+
+
+!!---- Window Active ----!!
+#------------------- Background -----------------------------------#
+window.active.title.bg:                                  Gradient SplitVertical Flat
+window.active.label.bg:                                  Gradient SplitVertical Flat
+window.active.handle.bg:                                 Solid Flat
+window.active.grip.bg:                                   Gradient Horizontal Flat
+window.active.button.unpressed.bg:                       Gradient SplitVertical Flat
+window.active.button.pressed.bg:                         Gradient SplitVertical Flat
+window.active.button.hover.bg:                           Gradient SplitVertical Flat
+window.active.button.disabled.bg:                        Gradient SplitVertical Flat
+window.active.button.toggled.unpressed.bg:               Gradient SplitVertical Flat
+window.active.button.toggled.pressed.bg:                 Gradient SplitVertical Flat
+window.active.button.toggled.hover.bg:                   Gradient SplitVertical Flat
+window.active.button.toggled.bg:                         Gradient SplitVertical Flat
+#------------------- Color ----------------------------------------#
+window.active.border.color:                              #000000
+window.active.title.separator.color:                     #000000
+window.active.client.color:                              #00C778
+window.active.label.text.color:                          #ffffff
+window.active.title.bg.color:                            #303030
+window.active.title.bg.colorTo:                          #181818
+window.active.label.bg.color:                            #303030
+window.active.label.bg.colorTo:                          #181818
+window.active.handle.bg.color:                           #555555
+window.active.grip.bg.color:                             #00C778
+window.active.grip.bg.colorTo:                           #ffffff
+window.active.*.bg.color:                                #303030
+window.active.*.bg.colorTo:                              #181818
+window.active.button.unpressed.image.color:              #005836
+window.active.button.pressed.image.color:                #00C778
+window.active.button.disabled.image.color:               #555555
+window.active.button.hover.image.color:                  #FF925B
+window.active.button.toggled.unpressed.image.color:      #005836
+window.active.button.toggled.pressed.image.color:        #00C778
+window.active.button.toggled.hover.image.color:          #FF925B
+#------------------- Font -----------------------------------------#
+window.active.label.text.font:                           shadow=n:shadowtint=70:shadowoffset=1
+
+
+!!---- Window Inactive ----!!
+#------------------- Background -----------------------------------#
+window.inactive.title.bg:                                Gradient SplitVertical Flat
+window.inactive.label.bg:                                Gradient SplitVertical Flat
+window.inactive.handle.bg:                               Solid Flat
+window.inactive.grip.bg:                                 Gradient SplitVertical Flat
+window.inactive.button.unpressed.bg:                     Gradient SplitVertical Flat
+window.inactive.button.pressed.bg:                       Gradient SplitVertical Flat
+window.inactive.button.hover.bg:                         Gradient SplitVertical Flat
+window.inactive.button.disabled.bg:                      Gradient SplitVertical Flat
+window.inactive.button.toggled.unpressed.bg:             Gradient SplitVertical Flat
+window.inactive.button.toggled.pressed.bg:               Gradient SplitVertical Flat
+window.inactive.button.toggled.hover.bg:                 Gradient SplitVertical Flat
+window.inactive.button.toggled.bg:                       Gradient SplitVertical Flat
+#------------------- Color ----------------------------------------#
+window.inactive.border.color:                            #000000
+window.inactive.title.separator.color:                   #000000
+window.inactive.client.color:                            #00C778
+window.inactive.label.text.color:                        #909090
+window.inactive.title.bg.color:                          #181818
+window.inactive.title.bg.colorTo:                        #101010
+window.inactive.label.bg.color:                          #181818
+window.inactive.label.bg.colorTo:                        #101010
+window.inactive.handle.bg.color:                         #333333
+window.inactive.grip.bg.color:                           #555555
+window.inactive.grip.bg.colorTo:                         #555555
+window.inactive.*.bg.color:                              #181818
+window.inactive.*.bg.colorTo:                            #101010
+window.inactive.button.unpressed.image.color:            #005836
+window.inactive.button.pressed.image.color:              #00C778
+window.inactive.button.disabled.image.color:             #555555
+window.inactive.button.hover.image.color:                #FF925B
+window.inactive.button.toggled.unpressed.image.color:    #005836
+window.inactive.button.toggled.pressed.image.color:      #00C778
+window.inactive.button.toggled.hover.image.color:        #FF925B
+#------------------- Font -----------------------------------------#
+window.inactive.label.text.font:                         shadow=n:shadowtint=70:shadowoffset=1
