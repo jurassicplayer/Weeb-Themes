@@ -1,0 +1,7 @@
+[KSplash Theme: SnowyNightMiku]
+Name = SnowyNightMiku
+Description = Animated Snowy Night Miku splash theme for KSplash. Rendered by D-Chana.
+Version = 1.0
+Author = Jurassicplayer
+#Homepage = http://kde-look.org
+Engine = KSplashQML
