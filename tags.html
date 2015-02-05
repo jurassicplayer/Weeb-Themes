@@ -1,0 +1,60 @@
+---
+layout: default
+title: Tags
+permalink: /tags/
+---
+{% assign subrepo = '/Weeb-Themes' %}
+
+{% capture tags %}
+    {% for tag in site.tags %}
+        {{ tag[0] }}
+    {% endfor %}
+{% endcapture %}
+{% assign sortedtags = tags | split:' ' | sort %}
+
+{% for tag in sortedtags %}
+<div id="tag-{{ tag | downcase }}" class="tag-posts">
+    {% for post in site.posts %}
+        {% for otag in post.tags %}
+            {% if tag == otag %}              
+                <div class="post" max-height="80px">
+                    {% if post.series %}
+                    <a href="{{ site.url }}{{ subrepo }}{{ post.url }}" class="series-recent">Series: {{ post.series }}</a>
+                    {% endif %}
+                    <span class="post-date"><h4>{{ post.date | date: "%B %e, %Y" }}</h4></span>
+                    <h3><a href="{{ site.url }}{{ subrepo }}{{ post.url }}">{{ post.title }}</a></h3>
+                    
+                    {{ post.excerpt | markdownify }}
+                    <div class="tagPanel">
+                        <span>Tags: </span>
+                    {% for t in post.tags %}
+                        <span class="tag"><a href="{{ site.url }}{{ subrepo }}/tags/?tag={{ t }}">{{ t }}</a></span>
+                    {% endfor%}
+                    </div>
+                    <h5 class="read-more"><a href="{{ site.url }}{{ subrepo }}{{ post.url }}" target="_blank">Read More</a></h5>
+                </div>
+                <br>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+</div>
+{% endfor %}
+
+<script type="text/javascript">
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    
+    window.onload = function() {
+        var tag = getParameterByName('tag');
+        var lower_tag = tag.toLowerCase();
+        if (lower_tag && document.getElementById('tag-' + lower_tag)) {
+            document.getElementById('tag-' + lower_tag).style.display = 'block';
+        } else {
+            document.getElementById('tagTitle').innerHTML = 'Illegal Tag Query';
+        }
+    };
+</script>

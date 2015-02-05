@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+    <link rel="icon" href="{{ site.baseurl }}/resources/webimage/favicon.png">
+    <title>{% if page.title %}{{ page.title }} {% else %} The Weeaboository {% endif %}</title>
+
+    <meta name="author" content="{{ site.name }}" />
+    <meta name="description" content="{{ site.description }}">
+
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(window).load(function() {
+        $(".loader").fadeOut("slow");
+      })
+    </script>
+  </head>
+
+  <body>
+    <span class="loader"><span class="loading"></span></span>
+	<div class="wrapper">
+      <div class="wrapper-header">
+        <div class="header">
+          <a href="http://jurassicplayer.github.io"><span id="banner-image"></span>
+          <span id="banner-name">The Weeaboository</span></a>
+          <nav id="navbar"><a href="http://jurassicplayer.github.io">Blog</a><a href="/projects">Projects</a><a href="/artwork">Artwork</a><a href="/about">About</a></nav>
+        </div>
+      </div>
+    
+      <div id="main" role="main" class="wrapper-content">
+        <div class="content">
+          {{ content }}
+        </div>
+      </div>
+      <br>
+      <div class="wrapper-footer">
+        <footer class="footer">
+          {% include svg-icons.html %}
+        </footer>
+      </div>
+    </div>
+
+    {% include analytics.html %}
+  </body>
+</html>
