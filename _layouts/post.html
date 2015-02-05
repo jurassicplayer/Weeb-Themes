@@ -12,7 +12,7 @@ layout: default
   </div>
   <div class="tagPanel">
     <span>Tags: </span>
-    {% assign sorted_tags = (page.tags | sort:0) %}
+    {% assign sorted_tags = (page.tags | sort) %}
     {% for t in sorted_tags %}
     <span class="tag"><a href="{{ site.url }}{{ subrepo }}/tags/?tag={{ t }}">{{ t }}</a></span>
     {% endfor%}
