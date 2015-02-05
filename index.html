@@ -22,7 +22,7 @@ layout: default
         <span>Tags: </span>
         {% assign sorted_tags = (post.tags | sort) %}
         {% for t in sorted_tags %}
-        <span class="tag"><a href="{{ site.url }}{{ subrepo }}/tags/?tag={{ t }}">{{ t }}</a></span>
+          <span class="tag"><a href="{{ site.url }}{{ subrepo }}/tags/?tag={{ t }}">{{ t }}</a></span>
         {% endfor%}
       </div>
       <span><a href="{{ site.baseurl }}{{ subrepo }}{{ post.url }}" class="read-more">Read More</a></span>
