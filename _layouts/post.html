@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+{% assign subrepo = '/Weeb-Themes' %}
 
 <article class="post">
   <span class="post-date"><h4>{{ page.date | date: "%B %e, %Y" }}</h4></span>
@@ -11,8 +12,9 @@ layout: default
   </div>
   <div class="tagPanel">
     <span>Tags: </span>
-    {% for t in page.tags %}
-    <span class="tag"><a href="{{ site.url }}/Weeb-Themes/tags/?tag={{ t }}">{{ t }}</a></span>
+    {% assign sorted_tags = (page.tags | sort:0) %}
+    {% for t in sorted_tags %}
+    <span class="tag"><a href="{{ site.url }}{{ subrepo }}/tags/?tag={{ t }}">{{ t }}</a></span>
     {% endfor%}
   </div>
 
