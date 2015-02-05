@@ -1,7 +1,7 @@
 ---
 layout: post
 title: SDDM - LoL Splash Lulu
-tags: [BootSplash, League of Legends, LoL, Lulu, SDDM, QT, QML]
+tags: [BootSplash, League_of_Legends, Lulu, SDDM, QT, QML]
 ---
 <img class="preview_image" height="250px" style="padding-right: 30px;" align="left" src="https://raw.githubusercontent.com/jurassicplayer/Weeb-Themes/master/weeb-sddm-themes/lolsplash/screenshot.jpg" />
 

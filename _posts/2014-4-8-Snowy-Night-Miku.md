@@ -1,7 +1,7 @@
 ---
 layout: post
 title: KSplashX - Snowy Night Miku
-tags: [Hatsune Miku, KDE, KSplashX, BootSplash, QT, QML, Snow]
+tags: [Hatsune_Miku, KDE, KSplashX, BootSplash, QT, QML, Snow]
 ---
 <img class="preview_image" height="250px" style="padding-right: 30px;" align="left" src="http://kde-look.org/CONTENT/content-pre3/164518-3.png" />
 
