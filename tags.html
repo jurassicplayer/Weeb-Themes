@@ -50,7 +50,7 @@ permalink: /tags/
     
     window.onload = function() {
         var tag = getParameterByName('tag');
-        var lower_tag = unescape(tag.toLowerCase());
+        var lower_tag = decodeURI(tag.toLowerCase());
         if (lower_tag && document.getElementById('tag-' + lower_tag)) {
             document.getElementById('tag-' + lower_tag).style.display = 'block';
         } else {
