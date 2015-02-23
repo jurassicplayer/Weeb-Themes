@@ -8,8 +8,8 @@ For your convenience, an "install script" is included...aka, it's just a cp line
 Remember to grant root access via sudo or su. You can look at the script "in-depth"
 if you are afraid of something malicious.
 
-Depends on:
-qt5-multimedia
-gstreamer0.10-ffmpeg
-gstreamer0.10-good-plugins
-gstreamer0.10-base-plugins
+SDDM themes depend on:
+- qt5-multimedia
+- gstreamer0.10-ffmpeg (.mp4)
+- gstreamer0.10-good-plugins (.webm, autoaudiosink)
+- gstreamer0.10-base-plugins (.ogg)
