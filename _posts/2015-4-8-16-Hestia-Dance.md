@@ -1,7 +1,7 @@
 ---
 layout: post
 title: SDDM - Hestia Dance
-tags: [BootSplash, Hestia, Hestia Dance, DanMachi, Bell, SDDM, QT, QML]
+tags: [BootSplash, Hestia, Hestia_Dance, DanMachi, Bell, SDDM, QT, QML]
 ---
 <img class="preview_image" height="250px" style="padding-right: 30px;" align="left" src="https://raw.githubusercontent.com/jurassicplayer/Weeb-Themes/master/weeb-sddm-themes/hestiadance/screenshot.jpg" />
 
