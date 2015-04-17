@@ -9,7 +9,7 @@ tags: [BootSplash, SAO, Sword_Art_Online, Asuna, SDDM, QT, QML]
 
 - Title: SAO Grasslands
 - Type: SDDM
-- Size: ~2MB
+- Size: ~4.9MB
 - Animated Bg
 - Music (Everyday Life)
 - [Source](https://github.com/jurassicplayer/Weeb-Themes/tree/master/weeb-sddm-themes/sao-grasslands)

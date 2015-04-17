@@ -9,7 +9,7 @@ tags: [BootSplash, League_of_Legends, Lulu, SDDM, QT, QML]
 
 - Title: LoL Splash
 - Type: SDDM
-- Size: ~2MB
+- Size: ~4.2MB
 - Toggleable Animated Bg
 - Toggleable Music
 - [Source](https://github.com/jurassicplayer/Weeb-Themes/tree/master/weeb-sddm-themes/lolsplash)

@@ -9,7 +9,7 @@ tags: [BootSplash, Illya, Miyu, Illya_Dance, Fate_Series, Fate/Kaleid, SDDM, QT,
 
 - Title: Illya Dance
 - Type: SDDM
-- Size: ~30MB
+- Size: ~27.6MB
 - Animated Bg
 - Music
 - [Source](https://github.com/jurassicplayer/Weeb-Themes/tree/master/weeb-sddm-themes/illyadance)

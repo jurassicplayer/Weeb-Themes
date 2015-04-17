@@ -9,7 +9,7 @@ tags: [BootSplash, Fate_Series, Fate/Stay_Night, Fate/Zero, Saber, SDDM, QT, QML
 
 - Title: Peaceful Saber
 - Type: SDDM
-- Size: ~1MB
+- Size: ~3.7MB
 - Static Bg
 - Animated Fg
 - Music (Kodoku na Junrei)
