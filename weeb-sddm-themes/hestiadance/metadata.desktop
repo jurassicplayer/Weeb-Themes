@@ -1,0 +1,16 @@
+[SddmGreeterTheme]
+Name=Hestia Dance
+Description=Hestia Dance Theme
+Author=Jurassicplayer
+Copyright=(c) 2015, Jurassicplayer
+License=None
+Type=sddm-theme
+Version=0.1
+Website=https://github.com/jurassicplayer/Weeaboository
+Screenshot=screenshot.jpg
+MainScript=Main.qml
+ConfigFile=theme.conf
+TranslationsDirectory=translations
+Email=jurassicplayer75@gmail.com
+Theme-Id=hestiadance
+Theme-API=2.0
