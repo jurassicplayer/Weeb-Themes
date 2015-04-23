@@ -11,5 +11,5 @@ tags: [BootSplash, Hestia, Hestia_Dance, DanMachi, Bell, SDDM, QT, QML]
 - Type: SDDM
 - Size: ~3MB
 - Animated Bg
-- Music
+- Music (My Shiny Teeth and Me)
 - [Source](https://github.com/jurassicplayer/Weeb-Themes/tree/master/weeb-sddm-themes/hestiadance)

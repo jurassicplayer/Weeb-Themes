@@ -11,5 +11,5 @@ tags: [BootSplash, Illya, Miyu, Illya_Dance, Fate_Series, Fate/Kaleid, SDDM, QT,
 - Type: SDDM
 - Size: ~27.6MB
 - Animated Bg
-- Music
+- Music (Popcorn Funk)
 - [Source](https://github.com/jurassicplayer/Weeb-Themes/tree/master/weeb-sddm-themes/illyadance)
