@@ -28,38 +28,38 @@ style "default"
 
   GtkButton::child-displacement-x               = 0 
   GtkButton::child-displacement-y               = 1 
-  GtkButton::default_border         = { 0, 0, 0, 0 }
-  GtkButton::default_outside_border     = { 0, 0, 0, 0 }
+  GtkButton::default_border                     = { 0, 0, 0, 0 }
+  GtkButton::default_outside_border             = { 0, 0, 0, 0 }
   GtkButton::focus-padding                      = 0
-  #GtkButton::inner-border                       = {0, 0, 0, 0}
-  #GtkButton::button-relief                      = GTK_RELIEF_NONE
-  #GtkButton::displace-focus                     = 1
-  #GtkButton::shadow_type                        = GTK_SHADOW_NONE
-  #GtkButton::image-spacing                      = 2
-  #GtkButton::focus-padding                      = 0
+   #GtkButton::inner-border                       = {0, 0, 0, 0}
+   #GtkButton::button-relief                      = GTK_RELIEF_NONE
+   #GtkButton::displace-focus                     = 1
+   #GtkButton::shadow_type                        = GTK_SHADOW_NONE
+   #GtkButton::image-spacing                      = 2
+   #GtkButton::focus-padding                      = 0
 
-  #GtkButtonBox::child_min_width                 = 0
-  #GtkButtonBox::child_min_heigth                = 0
-  #GtkButtonBox::child_internal_pad_x            = 0
-  #GtkButtonBox::child_internal_pad_y            = 0
+   #GtkButtonBox::child_min_width                 = 0
+   #GtkButtonBox::child_min_heigth                = 0
+   #GtkButtonBox::child_internal_pad_x            = 0
+   #GtkButtonBox::child_internal_pad_y            = 0
 
-  #GtkColorButton::default_border                = {0, 0, 0, 0}
-  #GtkColorButton::child-displacement-y          = 1
+   #GtkColorButton::default_border                = {0, 0, 0, 0}
+   #GtkColorButton::child-displacement-y          = 1
 
-  #GtkComboBox::appears-as-list                  = 1
-  #GtkComboBox::arrow-size                       = 10
-  #GtkComboBox::shadow_type                      = GTK_SHADOW_OUT
+   #GtkComboBox::appears-as-list                  = 1
+   #GtkComboBox::arrow-size                       = 10
+   #GtkComboBox::shadow_type                      = GTK_SHADOW_OUT
 
-  #GtkComboBoxEntry::appears-as-list             = 1
+   #GtkComboBoxEntry::appears-as-list             = 1
 
   GtkNotebook::tab-overlap                      = 0 
-  #GtkNotebook::tab-curvature                    = 5
+   #GtkNotebook::tab-curvature                    = 5
     
-  #GimpColorNotebook::tab-border            = 1
-  #GimpDockSeparator::height                = 10
+   #GimpColorNotebook::tab-border                 = 1
+   #GimpDockSeparator::height                     = 10
 
-  GtkVScale::slider_length          = 10
-  GtkVScale::slider_width           = 14
+  GtkVScale::slider_length                      = 10
+  GtkVScale::slider_width                       = 14
   GtkVScale::focus-padding                      = 4
   GtkVScale::trough-side-details                = 0
    #GtkVScale::trough-border                      = 1
@@ -71,136 +71,136 @@ style "default"
 
   GtkHScale::trough-side-details                = 0
   GtkHScale::focus-padding                      = 4
-  GtkHScale::slider_length          = 10
-  GtkHScale::slider_width           = 14 
-  #GtkHScale::trough-border                       = 1
-  #GtkHScale::value-spacing                       = 0
-  #GtkHScale::trough-under-steppers               = 0
-  #GtkHScale::arrow-displacement-x                = 0
-  #GtkHScale::arrow-displacement-y                = 0
-  #GtkHScale::activate_slider                     = 0
+  GtkHScale::slider_length                      = 10
+  GtkHScale::slider_width                       = 14 
+   #GtkHScale::trough-border                      = 1
+   #GtkHScale::value-spacing                      = 0
+   #GtkHScale::trough-under-steppers              = 0
+   #GtkHScale::arrow-displacement-x               = 0
+   #GtkHScale::arrow-displacement-y               = 0
+   #GtkHScale::activate_slider                    = 0
 
   GtkArrow::arrow-scaling                       = 0.4 
 
-  GtkPaned::handle_size             = 3
-  #GtkPaned::handle_width                        = 6
+  GtkPaned::handle_size                         = 3
+   #GtkPaned::handle_width                        = 6
 
-  GtkRange::trough_border           =0
-  GtkRange::slider_width            =9
-  GtkRange::stepper_size            =18
-  #GtkRange::trough-border                        = 0
-  #GtkRange::arrow-displacement-x                 = 0
-  #GtkRange::arrow-displacement-y                 = 0
-  #GtkRange::stepper-spacing                      = 0
-  #GtkRange::trough-side-details                  = 0
-  #GtkRange::trough-under-steppers                = 0
+  GtkRange::trough_border                       = 0
+  GtkRange::slider_width                        = 9
+  GtkRange::stepper_size                        = 18
+   #GtkRange::trough-border                       = 0
+   #GtkRange::arrow-displacement-x                = 0
+   #GtkRange::arrow-displacement-y                = 0
+   #GtkRange::stepper-spacing                     = 0
+   #GtkRange::trough-side-details                 = 0
+   #GtkRange::trough-under-steppers               = 0
  
-  #GtkScrollbar::fixed-slider-length              = 1 
-  GtkScrollbar::min_slider_length       = 30
-  #GtkScrollbar::slider_width                    = 16
-  #GtkScrollbar::stepper_size                    = 24
-  #GtkScrollbar::activate-slider                 = 0
-  #GtkScrollbar::has-backward-stepper            = 1
-  #GtkScrollbar::has-forward-stepper             = 1
-  #GtkScrollbar::has-secondary-backward-stepper  = 0
-  #GtkScrollbar::has-secondary-forward-stepper   = 0
+   #GtkScrollbar::fixed-slider-length             = 1 
+  GtkScrollbar::min_slider_length               = 30
+   #GtkScrollbar::slider_width                    = 16
+   #GtkScrollbar::stepper_size                    = 24
+   #GtkScrollbar::activate-slider                 = 0
+   #GtkScrollbar::has-backward-stepper            = 1
+   #GtkScrollbar::has-forward-stepper             = 1
+   #GtkScrollbar::has-secondary-backward-stepper  = 0
+   #GtkScrollbar::has-secondary-forward-stepper   = 0
 
-  GtkCheckButton::indicator_size        = 14
-  GtkCheckButton::indicator_spacing         = 3
-  #GtkCheckButton::focus-padding                 = 1
+  GtkCheckButton::indicator_size                = 14
+  GtkCheckButton::indicator_spacing             = 3
+   #GtkCheckButton::focus-padding                 = 1
 
-  #GtkCheckMenuItem::indicator-size              =17
+   #GtkCheckMenuItem::indicator-size              =17
 
-  GtkRadioButton::indicator_size        = 14
-  #GtkRadioButton::focus-padding                 = 1
+  GtkRadioButton::indicator_size                = 14
+   #GtkRadioButton::focus-padding                 = 1
     
-  GtkMenuBar::shadow-type                   = GTK_SHADOW_NONE 
+  GtkMenuBar::shadow-type                       = GTK_SHADOW_NONE 
   GtkMenuBar::internal-padding                  = 6 
-  #GtkMenuBar::button-relief                     = GTK_RELIEF_NONE
+   #GtkMenuBar::button-relief                     = GTK_RELIEF_NONE
 
   GtkMenu::horizontal-padding                   = 3
   GtkMenu::vertical-padding                     = 3
-  #GtkMenu::horizontal-offset                    = 0
-  #GtkMenu::vertical-offset                      = 0
-  #GtkMenu::double-arrows            = TRUE
+   #GtkMenu::horizontal-offset                    = 0
+   #GtkMenu::vertical-offset                      = 0
+   #GtkMenu::double-arrows                      = TRUE
 
-  #GtkMenuItem::arrow-scaling                    = 0
-  #GtkMenuItem::arrow-spacing                    = 0
-  #GtkMenuItem::horizontal-padding               = 2
-  #GtkMenuItem::toggle-spacing                   = 3
-  #GtkMenuItem::selected-shadow-type             = GTK_SHADOW_NONE
-  #GtkMenuItem::wide-separators = 1
-  #GtkMenuItem::separator-width = 1
-  #GtkMenuItem::separator-height = 1
+   #GtkMenuItem::arrow-scaling                    = 0
+   #GtkMenuItem::arrow-spacing                    = 0
+   #GtkMenuItem::horizontal-padding               = 2
+   #GtkMenuItem::toggle-spacing                   = 3
+   #GtkMenuItem::selected-shadow-type             = GTK_SHADOW_NONE
+   #GtkMenuItem::wide-separators                  = 1
+   #GtkMenuItem::separator-width                  = 1
+   #GtkMenuItem::separator-height                 = 1
 
   GtkExpander::expander-size                    = 12
   GtkExpander::expander-spacing                 = 2
-  GtkProgressBar::max-horizontal-bar-height = 15
-  GtkProgressBar::min-horizontal-bar-height = 15
-  #GtkProgressBar::min-vertical-bar-width = 10
- #GtkProgressBar::xspacing = 2
-#GtkProgressBar::yspacing = 10
-  #GtkProgressBar::trough_border                  = 2
+  GtkProgressBar::max-horizontal-bar-height     = 15
+  GtkProgressBar::min-horizontal-bar-height     = 15
+   #GtkProgressBar::min-vertical-bar-width        = 10
+   #GtkProgressBar::xspacing = 2
+   #GtkProgressBar::yspacing = 10
+   #GtkProgressBar::trough_border                 = 2
 
-  #GtkStatusbar::shadow_type                      = GTK_SHADOW_NONE
+   #GtkStatusbar::shadow_type                     = GTK_SHADOW_NONE
 
-  #GtkSpinButton::shadow_type                     = GTK_SHADOW_NONE
-  #GtkSpinButton::inner-border                    = {0, 0, 0, 0}
-  #GtkSpinButton::focus-padding                   = 1
+   #GtkSpinButton::shadow_type                    = GTK_SHADOW_NONE
+   #GtkSpinButton::inner-border                   = {0, 0, 0, 0}
+   #GtkSpinButton::focus-padding                  = 1
 
-  GtkToolButton::icon-spacing                    = 0
+  GtkToolButton::icon-spacing                   = 0
 
   GtkToolbar::internal-padding                  = 0
-  #GtkToolbar::shadow-type                  = GTK_SHADOW_NONE 
-  #GtkToolbar::button-relief                     = GTK_RELIEF_NORMAL
-  #GtkToolbar::space-size                        = 2
-  #GtkToolbar::max-child-expand                  = 0
-  #GtkToolbar::space-style                       = GTK_TOOLBAR_SPACE_LINE
+   #GtkToolbar::shadow-type                       = GTK_SHADOW_NONE 
+   #GtkToolbar::button-relief                     = GTK_RELIEF_NORMAL
+   #GtkToolbar::space-size                        = 2
+   #GtkToolbar::max-child-expand                  = 0
+   #GtkToolbar::space-style                       = GTK_TOOLBAR_SPACE_LINE
 
   GtkDialog::action-area-border                 = 2
   GtkDialog::button-spacing                     = 3
   GtkDialog::content-area-border                = 1
 
-  GtkOptionMenu::indicator_size         = { 15, 8 }
-  GtkOptionMenu::indicator_spacing      = { 8, 2, 0, 0 }
-  #GtkOptionMenu::focus-padding                  = 1
+  GtkOptionMenu::indicator_size                 = { 15, 8 }
+  GtkOptionMenu::indicator_spacing              = { 8, 2, 0, 0 }
+   #GtkOptionMenu::focus-padding                  = 1
 
-  GtkStatusbar::shadow_type         = GTK_SHADOW_NONE
+  GtkStatusbar::shadow_type                     = GTK_SHADOW_NONE
 
-  GtkSpinButton::shadow_type            = GTK_SHADOW_NONE
-  #GtkSpinButton::focus-padding                  = 1
+  GtkSpinButton::shadow_type                    = GTK_SHADOW_NONE
+   #GtkSpinButton::focus-padding                  = 1
 
-  #GtkScrolledWindow::scrollbar-spacing          = 3 
-  #GtkScrolledWindow::scrollbars-within-bevel    = 1
-  #GtkScrolledWindow::shadow_type                = GTK_SHADOW_NONE
+   #GtkScrolledWindow::scrollbar-spacing          = 3 
+   #GtkScrolledWindow::scrollbars-within-bevel    = 1
+   #GtkScrolledWindow::shadow_type                = GTK_SHADOW_NONE
 
-  GtkTreeView::row_ending_details       = 0
-  GtkTreeView   ::odd_row_color              = "#181818"
-  GtkTreeView   ::even_row_color         = "#121212" 
+  GtkTreeView::row_ending_details               = 0
+  GtkTreeView::odd_row_color                    = "#181818"
+  GtkTreeView::even_row_color                   = "#121212" 
   GtkTreeView::expander-size                    = 12
   GtkTreeView::vertical-separator               = 1
   GtkTreeView::horizontal-separator             = 4
   GtkTreeView::allow-rules                      = 1
-  #GtkTreeView::indent-expanders                 = 1
-  #GtkTreeView::row-ending-details               = 1
+   #GtkTreeView::indent-expanders                 = 1
+   #GtkTreeView::row-ending-details               = 1
 
-  GtkHTML::cite_color               = "#8B3E2F" 
+  GtkHTML::cite_color                           = "#8B3E2F" 
 
-  GtkWidget::link-color = "#00C5C5"
-  GtkWidget::visited-link-color = "#551A8B"
+  GtkWidget::link-color                         = "#00C5C5"
+  GtkWidget::visited-link-color                 = "#551A8B"
   GtkWidget::cursor-aspect-ratio                = 0.05
   GtkWidget::focus-line-width                   = 0
-  #GtkWidget::scroll-arrow-hlength               = 16
-  #GtkWidget::scroll-arrow-vlength               = 16
-  #GtkWidget::separator-height                   = 0
-  #GtkWidget::separator-width                    = 0
-  #GtkWidget::wide-separators                    = 0
+   #GtkWidget::scroll-arrow-hlength               = 16
+   #GtkWidget::scroll-arrow-vlength               = 16
+   #GtkWidget::separator-height                   = 0
+   #GtkWidget::separator-width                    = 0
+   #GtkWidget::wide-separators                    = 0
 
-  #BonoboUiToolbar::shadow-type                  = GTK_SHADOW_NONE
+   #BonoboUiToolbar::shadow-type                  = GTK_SHADOW_NONE
 
   WnckTasklist::fade-overlay-rect               = 0
   WnckTasklist::fade-loop-time                  = 5.0
-  #WnckTasklist::fade-max-loop                   = 50
+   #WnckTasklist::fade-max-loop                   = 50
   WnckTasklist::fade-opacity                    = 0.5
 
   NautilusIconContainer::highlight_alpha        = 145
@@ -209,54 +209,54 @@ style "default"
   # that the entry should be drawn transparently on the canvas.
   # Without this, gecko will fill in the background of the entry.
   GtkEntry::honors-transparent-bg-hint          = 1
-  #GtkEntry::inner-border = {1, 1, 1, 1}
+   #GtkEntry::inner-border                      = {1, 1, 1, 1}
 
-  xthickness                                = 2
-  ythickness                                = 2
+  xthickness                                    = 2
+  ythickness                                    = 2
 
 
+  fg[NORMAL]            = "#aaaaaa"
+  fg[PRELIGHT]          = "#909090"
+  fg[SELECTED]          = "#cccccc"
+  fg[ACTIVE]            = "#cccccc"
+  fg[INSENSITIVE]       = "#777777"
 
-  fg[NORMAL] = "#aaaaaa"
-  fg[PRELIGHT] = "#909090"
-  fg[SELECTED] = "#cccccc"
-  fg[ACTIVE] = "#cccccc"
-  fg[INSENSITIVE] = "#777777"
+  bg[NORMAL]            = "#2c2c2c"
+  bg[PRELIGHT]          = "#2c2c2c"
+  bg[SELECTED]          = "#454545"
+  bg[ACTIVE]            = "#2c2c2c"
+  bg[INSENSITIVE]       = "#2c2c2c"
+   #bg_pixmap[NORMAL]     = "Others/bg.png"
 
-  bg[NORMAL] = "#1d1d1d"
-  bg[PRELIGHT] = "#1d1d1d"
-  bg[SELECTED] = "#454545"
-  bg[ACTIVE] = "#1d1d1d"
-  bg[INSENSITIVE] = "#1d1d1d"
- # bg_pixmap[NORMAL]    = "Others/bg.png"
-  base[NORMAL] = "#1d1d1d"
-  base[PRELIGHT] = "#1d1d1d"
-  base[SELECTED] = "#454545"
-  base[ACTIVE] = "#1d1d1d"
-  base[INSENSITIVE] = "#1d1d1d"
+  base[NORMAL]          = "#2c2c2c"
+  base[PRELIGHT]        = "#2c2c2c"
+  base[SELECTED]        = "#454545"
+  base[ACTIVE]          = "#2c2c2c"
+  base[INSENSITIVE]     = "#2c2c2c"
 
-  text[NORMAL] = "#aaaaaa"
-  text[PRELIGHT] = "#ffffff"
-  text[SELECTED] = "#cccccc"
-  text[ACTIVE] = "#cccccc"
-  text[INSENSITIVE] = "#777777"
+  text[NORMAL]          = "#aaaaaa"
+  text[PRELIGHT]        = "#777777"
+  text[SELECTED]        = "#cccccc"
+  text[ACTIVE]          = "#cccccc"
+  text[INSENSITIVE]     = "#777777"
 
   engine "pixmap"
   {
     image
     {
-      function              = HANDLE
-      recolorable           = TRUE
-      overlay_file          = "Handles/handle-h.png"
+      function          = HANDLE
+      recolorable       = TRUE
+      overlay_file      = "Handles/handle-h.png"
       overlay_stretch   = FALSE
-      orientation           = HORIZONTAL
+      orientation       = HORIZONTAL
     }
     image
     {
-      function              = HANDLE
-      recolorable           = TRUE
-      overlay_file          = "Handles/handle-v.png"
+      function          = HANDLE
+      recolorable       = TRUE
+      overlay_file      = "Handles/handle-v.png"
       overlay_stretch   = FALSE
-      orientation           = VERTICAL
+      orientation       = VERTICAL
     }
 
 ####################### SHADOWS ############################x
@@ -272,7 +272,7 @@ style "default"
     }
     image
     {
-       function     = SHADOW
+       function         = SHADOW
        shadow           = OUT
        recolorable      = TRUE
        file             = "Shadows/shadow-out.png"
@@ -281,7 +281,7 @@ style "default"
 
     image
     {
-       function     = SHADOW
+       function         = SHADOW
        shadow           = ETCHED_IN
        recolorable      = TRUE
        file             = "Shadows/shadow-in.png"               
@@ -290,7 +290,7 @@ style "default"
     }
     image
     {
-       function     = SHADOW
+       function         = SHADOW
        shadow           = ETCHED_OUT
        recolorable      = TRUE
        file             = "Shadows/shadow-none.png"
@@ -300,11 +300,11 @@ style "default"
     image
     {
        function         = SHADOW_GAP
-       recolorable          = TRUE
-       file                 = "Frame-Gap/frame1.png"
-       border               = { 2, 2, 2, 2 }
-       stretch              = TRUE
-       gap_start_file       = "Frame-Gap/frame-gap-start.png"
+       recolorable      = TRUE
+       file             = "Frame-Gap/frame1.png"
+       border           = { 2, 2, 2, 2 }
+       stretch          = TRUE
+       gap_start_file   = "Frame-Gap/frame-gap-start.png"
        gap_start_border = { 2, 0, 2, 0 }
        gap_end_file     = "Frame-Gap/frame-gap-end.png"
        gap_end_border   = { 0, 2, 2, 0 }
@@ -313,7 +313,7 @@ style "default"
 
     image
     {
-       function     = VLINE
+       function         = VLINE
        recolorable      = TRUE
        file             = "Lines/line-v.png"
        border           = { 0, 0, 0, 0 }
@@ -344,11 +344,11 @@ style "default"
       {
         function        = ARROW
         recolorable     = TRUE
-        state                   = NORMAL
-        overlay_file        = "Arrows/arrow-up.png"
-        overlay_border      = { 0, 0, 0, 0 }
-        overlay_stretch     = FALSE
-        arrow_direction     = UP
+        state           = NORMAL
+        overlay_file    = "Arrows/arrow-up.png"
+        overlay_border  = { 0, 0, 0, 0 }
+        overlay_stretch = FALSE
+        arrow_direction = UP
       }
       
       image
@@ -356,10 +356,10 @@ style "default"
         function        = ARROW
         state           = PRELIGHT
         recolorable     = TRUE
-        overlay_file        = "Arrows/arrow-up-prelight.png"
-        overlay_border      = { 0, 0, 0, 0 }
-        overlay_stretch     = FALSE
-        arrow_direction     = UP
+        overlay_file    = "Arrows/arrow-up-prelight.png"
+        overlay_border  = { 0, 0, 0, 0 }
+        overlay_stretch = FALSE
+        arrow_direction = UP
       }
      
      image
@@ -367,10 +367,10 @@ style "default"
         function        = ARROW
         state           = ACTIVE
         recolorable     = TRUE
-        overlay_file        = "Arrows/arrow-up-active.png"
-        overlay_border      = { 0, 0, 0, 0 }
-        overlay_stretch     = FALSE
-        arrow_direction     = UP
+        overlay_file    = "Arrows/arrow-up-active.png"
+        overlay_border  = { 0, 0, 0, 0 }
+        overlay_stretch = FALSE
+        arrow_direction = UP
       }
       
       image
@@ -378,21 +378,21 @@ style "default"
         function        = ARROW
         state           = INSENSITIVE
         recolorable     = TRUE
-        overlay_file        = "Arrows/arrow-up-insensitive.png"
-        overlay_border      = { 0, 0, 0, 0 }
-        overlay_stretch     = FALSE
-        arrow_direction     = UP
+        overlay_file    = "Arrows/arrow-up-insensitive.png"
+        overlay_border  = { 0, 0, 0, 0 }
+        overlay_stretch = FALSE
+        arrow_direction = UP
       }
       
       image
       {
-            function        = ARROW
-            state           = NORMAL
-            recolorable     = TRUE
-            overlay_file        = "Arrows/arrow-down.png"
-            overlay_border      = { 0, 0, 0, 0 }
-            overlay_stretch     = FALSE
-            arrow_direction     = DOWN
+        function        = ARROW
+        state           = NORMAL
+        recolorable     = TRUE
+        overlay_file    = "Arrows/arrow-down.png"
+        overlay_border  = { 0, 0, 0, 0 }
+        overlay_stretch = FALSE
+        arrow_direction = DOWN
       }
      
       image
@@ -400,10 +400,10 @@ style "default"
         function        = ARROW
         state           = PRELIGHT
         recolorable     = TRUE
-        overlay_file        = "Arrows/arrow-down-prelight.png"
-        overlay_border      = { 0, 0, 0, 0 }
-        overlay_stretch     = FALSE
-        arrow_direction     = DOWN
+        overlay_file    = "Arrows/arrow-down-prelight.png"
+        overlay_border  = { 0, 0, 0, 0 }
+        overlay_stretch = FALSE
+        arrow_direction = DOWN
      }
     
      image
@@ -411,10 +411,10 @@ style "default"
         function        = ARROW
         state           = ACTIVE
         recolorable     = TRUE
-        overlay_file        = "Arrows/arrow-down-pressed.png"
-        overlay_border      = { 0, 0, 0, 0 }
-        overlay_stretch     = FALSE
-        arrow_direction     = DOWN
+        overlay_file    = "Arrows/arrow-down-pressed.png"
+        overlay_border  = { 0, 0, 0, 0 }
+        overlay_stretch = FALSE
+        arrow_direction = DOWN
      }
 
      image
@@ -422,98 +422,98 @@ style "default"
         function        = ARROW
         state           = INSENSITIVE
         recolorable     = TRUE
-        overlay_file        = "Arrows/arrow-down-insens.png"
-        overlay_border      = { 0, 0, 0, 0 }
-        overlay_stretch     = FALSE
-        arrow_direction     = DOWN
+        overlay_file    = "Arrows/arrow-down-insens.png"
+        overlay_border  = { 0, 0, 0, 0 }
+        overlay_stretch = FALSE
+        arrow_direction = DOWN
      }
 
      image
      {
         function        = ARROW
         recolorable     = TRUE
-        state                   = NORMAL
-        overlay_file        = "Arrows/arrow-left.png"
-        overlay_border      = { 0, 0, 0, 0 }
-        overlay_stretch     = FALSE
-        arrow_direction     = LEFT
+        state           = NORMAL
+        overlay_file    = "Arrows/arrow-left.png"
+        overlay_border  = { 0, 0, 0, 0 }
+        overlay_stretch = FALSE
+        arrow_direction = LEFT
       }
       
       image
       {
         function        = ARROW
         recolorable     = TRUE
-        state                   = PRELIGHT
-        overlay_file        = "Arrows/arrow-left-prelight.png"
-        overlay_border      = { 0, 0, 0, 0 }
-        overlay_stretch     = FALSE
-        arrow_direction     = LEFT
+        state           = PRELIGHT
+        overlay_file    = "Arrows/arrow-left-prelight.png"
+        overlay_border  = { 0, 0, 0, 0 }
+        overlay_stretch = FALSE
+        arrow_direction = LEFT
       }
       
       image
       {
         function        = ARROW
         recolorable     = TRUE
-        state                   = ACTIVE
-        overlay_file        = "Arrows/arrow-left-active.png"
-        overlay_border      = { 0, 0, 0, 0 }
-        overlay_stretch     = FALSE
-        arrow_direction     = LEFT
+        state           = ACTIVE
+        overlay_file    = "Arrows/arrow-left-active.png"
+        overlay_border  = { 0, 0, 0, 0 }
+        overlay_stretch = FALSE
+        arrow_direction = LEFT
       }
       
       image
       {
         function        = ARROW
         recolorable     = TRUE
-        state                   = INSENSITIVE
-        overlay_file        = "Arrows/arrow-left-insensitive.png"
-        overlay_border      = { 0, 0, 0, 0 }
-        overlay_stretch     = FALSE
-        arrow_direction     = LEFT
+        state           = INSENSITIVE
+        overlay_file    = "Arrows/arrow-left-insensitive.png"
+        overlay_border  = { 0, 0, 0, 0 }
+        overlay_stretch = FALSE
+        arrow_direction = LEFT
       }
       
       image
       {
         function        = ARROW
         recolorable     = TRUE
-        state                   = NORMAL
-        overlay_file        = "Arrows/arrow-right.png"
-        overlay_border      = { 0, 0, 0, 0 }
-        overlay_stretch     = FALSE
-        arrow_direction     = RIGHT
+        state           = NORMAL
+        overlay_file    = "Arrows/arrow-right.png"
+        overlay_border  = { 0, 0, 0, 0 }
+        overlay_stretch = FALSE
+        arrow_direction = RIGHT
       }
       
       image
       {
         function        = ARROW
         recolorable     = TRUE
-        state                   = PRELIGHT
-        overlay_file        = "Arrows/arrow-right-prelight.png"
-        overlay_border      = { 0, 0, 0, 0 }
-        overlay_stretch     = FALSE
-        arrow_direction     = RIGHT
+        state           = PRELIGHT
+        overlay_file    = "Arrows/arrow-right-prelight.png"
+        overlay_border  = { 0, 0, 0, 0 }
+        overlay_stretch = FALSE
+        arrow_direction = RIGHT
       }
       
       image
       {
         function        = ARROW
         recolorable     = TRUE
-        state                   = ACTIVE
-        overlay_file        = "Arrows/arrow-right-active.png"
-        overlay_border      = { 0, 0, 0, 0 }
-        overlay_stretch     = FALSE
-        arrow_direction     = RIGHT
+        state           = ACTIVE
+        overlay_file    = "Arrows/arrow-right-active.png"
+        overlay_border  = { 0, 0, 0, 0 }
+        overlay_stretch = FALSE
+        arrow_direction = RIGHT
       }
       
       image
       {
         function        = ARROW
         recolorable     = TRUE
-        state                   = INSENSITIVE
-        overlay_file        = "Arrows/arrow-right-insensitive.png"
-        overlay_border      = { 0, 0, 0, 0 }
-        overlay_stretch     = FALSE
-        arrow_direction     = RIGHT
+        state           = INSENSITIVE
+        overlay_file    = "Arrows/arrow-right-insensitive.png"
+        overlay_border  = { 0, 0, 0, 0 }
+        overlay_stretch = FALSE
+        arrow_direction = RIGHT
       }
 
   }

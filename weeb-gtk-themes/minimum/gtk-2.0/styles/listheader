@@ -2,14 +2,14 @@ style "list-header"
 {
    #Comment out the ythickness setting below for thicker column headers.
  ythickness = 3
-    GtkTreeView::odd_row_color  = "#181818"
-    GtkTreeView::even_row_color = "#121212"
+    GtkTreeView::odd_row_color  = "#1f1f1f"
+    GtkTreeView::even_row_color = "#191919"
 #  bg[NORMAL] = "#121212"
 #  bg[PRELIGHT] = "#121212"
 #  bg[SELECTED] = "#121212"
 #  bg[ACTIVE] = "#121212"
 #  bg[INSENSITIVE] = "#121212"
-  base[NORMAL] = "#004B2E"
+  base[NORMAL]                  = "#161616"
 #  base[PRELIGHT] = "#121212"
 #  base[SELECTED] = "#121212"
 #  base[ACTIVE] = "#121212"
