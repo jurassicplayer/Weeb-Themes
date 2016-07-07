@@ -3,7 +3,7 @@ layout: post
 title: KSplashX - Snowy Night Miku
 tags: [Hatsune_Miku, KDE, KSplashX, BootSplash, QT, QML, Snow]
 ---
-<img class="preview_image" height="250px" style="padding-right: 30px;" align="left" src="http://kde-look.org/CONTENT/content-pre3/164518-3.png" />
+<img class="preview_image" height="250px" style="padding-right: 30px;" align="left" src="https://cn.pling.com/img//hive/content-pre3/164518-3.png" />
 
 <br>
 
@@ -11,5 +11,5 @@ tags: [Hatsune_Miku, KDE, KSplashX, BootSplash, QT, QML, Snow]
 - Type: KSplashX
 - Size: ~400KB
 - Animated Bg
-- [Kde-Look](kde-look.org/content/show.php/Snowy+Night+Miku?content=164518)
+- [Kde-Look](http://kde-look.org/content/show.php/Snowy+Night+Miku?content=164518)
 - [Source](https://github.com/jurassicplayer/Weeb-Themes/tree/master/weeb-ksplashx-themes/SnowyNightMiku)
