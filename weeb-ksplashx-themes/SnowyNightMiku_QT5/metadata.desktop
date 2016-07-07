@@ -1,0 +1,16 @@
+[Desktop Entry]
+Comment=Snowy Night Miku KSplash by Jurassicplayer
+Encoding=UTF-8
+Name=Snowy Night Miku
+Type=Service
+
+X-KDE-ServiceTypes=Plasma/LookAndFeel
+X-KDE-ParentApp=
+X-KDE-PluginInfo-Author=Jurassicplayer
+X-KDE-PluginInfo-Category=
+X-KDE-PluginInfo-Email=jurassicplayer75@gmail.com
+X-KDE-PluginInfo-License=
+X-KDE-PluginInfo-Name=SnowyNightMiku_QT5
+X-KDE-PluginInfo-Version=1.1
+X-KDE-PluginInfo-Website=http://github.com/jurassicplayer/Weeb-Themes
+X-Plasma-MainScript=defaults
