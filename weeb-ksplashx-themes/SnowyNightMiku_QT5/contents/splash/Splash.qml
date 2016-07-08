@@ -49,21 +49,27 @@ Rectangle {
 		NumberAnimation {target: beltMid; property: "width"; to: Screen.width * 0.62; duration: 1000 }
 	}
 	
-	/*// Small snowflakes generator
-	ParticleGroup {
-		id: smallEmitter
-		width: backgroundContainer.width; height: parent.height
+	ParticleSystem {
+	    id: backgroundParticles
 		anchors.centerIn: parent
-		emissionRate: 9
-		count: 600
-		lifeSpan: 20000; lifeSpanDeviation: 2000
-		angle: 100; angleDeviation: 70; velocity: 50; velocityDeviation: 50
-		source: "images/starParticleSmall.png"
-		Wander {
-			xvariance: 30
-			pace: 60
-		}
-	}*/
+		ImageParticle {
+            source: "images/starParticleSmall.png"
+            anchors.fill: parent
+        }
+	}
+	// Small snowflakes generator
+	Emitter {
+	    id: smallEmitter
+	    system: backgroundParticles
+		anchors.fill: backgroundContainer
+		emitRate: 60
+		lifeSpan: 4000; lifeSpanVariation: 400
+		size: 10
+		velocity: PointDirection {xVariation: 60; y:50; yVariation: 30;}
+        shape: MaskShape {
+            source: "images/starParticleSmall.png" 
+        }
+	}
 	
 	// Top bar of the belt (acts on opacity)
 	Rectangle {
@@ -136,34 +142,38 @@ Rectangle {
 		color: "#FFFFFF"
 		opacity: 0
     }
-	/*// Medium snowflakes generator
-	ParticleGroup {
-		id: mediumEmitter
-		width: backgroundContainer.width; height: parent.height
+    ParticleSystem {
+	    id: foregroundParticles
 		anchors.centerIn: parent
-		emissionRate: 4
-		count: 600
-		lifeSpan: 20000; lifeSpanDeviation: 2000
-		angle: 100; angleDeviation: 70; velocity: 50; velocityDeviation: 50
-		source: "images/starParticleMedium.png"
-		Wander {
-			xvariance: 30
-			pace: 60
-		}
+		ImageParticle {
+			source: "images/starParticleMedium.png"
+            anchors.fill: parent
+        }
+	}
+	// Medium snowflakes generator
+    Emitter {
+	    id: mediumEmitter
+	    system: foregroundParticles
+		anchors.fill: backgroundContainer
+		emitRate: 13
+		lifeSpan: 4000; lifeSpanVariation: 400
+		size: 20
+		velocity: PointDirection {xVariation: 60; y:50; yVariation: 25;}
+        shape: MaskShape {
+            source: "images/starParticleMedium.png" 
+        }
 	}
 	// Large snowflakes generator
-	ParticleGroup {
-		id: largeEmitter
-		width: backgroundContainer.width; height: 0
-		anchors.horizontalCenter: backgroundContainer.topMargin
-		emissionRate: 1
-		count: 4
-		lifeSpan: 10000; lifeSpanDeviation: 2000
-		angle: 120; angleDeviation: 70; velocity:70; velocityDeviation: 30
-		source: "images/starParticleLarge.png"
-		Wander {
-			xvariance: 100
-			pace: 50
-		}
-	}*/
+	Emitter {
+	    id: largeEmitter
+	    system: foregroundParticles
+		anchors.fill: backgroundContainer
+		emitRate: 3
+		lifeSpan: 3000; lifeSpanVariation: 300
+		size: 30
+		velocity: PointDirection {xVariation: 60; y:70; yVariation: 20;}
+        shape: MaskShape {
+            source: "images/starParticleLarge.png" 
+        }
+	}
 }
