@@ -1,11 +1,12 @@
-import QtQuick 2.0
+import QtQuick 2.7
 import SddmComponents 2.0
-import QtMultimedia 5.0
+import QtMultimedia 5.6
+import QtQuick.Window 2.2
 
 Rectangle {
     id: container
-    width: 1024
-    height: 768
+    width: Screen.width
+    height: Screen.height
     property int sessionIndex: session.index
     TextConstants { id: textConstants }
 
@@ -129,7 +130,7 @@ Rectangle {
                         KeyNavigation.backtab: name; KeyNavigation.tab: session
                         Keys.onPressed: {
                             if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
-                                sddm.login(name.text, password.text, session.index)
+                                sddm.login(name.text, password.text, sessionIndex)
                                 event.accepted = true
                             }
                         }       

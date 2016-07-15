@@ -1,12 +1,13 @@
-import QtQuick 2.0
-import QtQuick.Particles 2.0
+import QtQuick 2.7
 import SddmComponents 2.0
-import QtMultimedia 5.0
+import QtMultimedia 5.6
+import QtQuick.Window 2.2
+import QtQuick.Particles 2.0
 
 Rectangle {
     id: container
-    width: 1024
-    height: 768
+    width: Screen.width
+    height: Screen.height
     property int sessionIndex: session.index
     TextConstants { id: textConstants }
 
@@ -84,7 +85,8 @@ Rectangle {
 		anchors.right: parent.right
 		anchors.rightMargin: parent.width*0.24
 		width: parent.width*0.38
-		anchors.top: parent.height*0.24
+		anchors.top: parent.top
+		anchors.topMargin: parent.height*0.24
 		system: spiral
 		emitRate: 10
 		lifeSpan: 3000
@@ -166,7 +168,7 @@ Rectangle {
                         KeyNavigation.backtab: btnShutdown; KeyNavigation.tab: password
                         Keys.onPressed: {
                             if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
-                                sddm.login(name.text, password.text, session.index)
+                                sddm.login(name.text, password.text, sessionIndex)
                                 event.accepted = true
                             }
                         }
@@ -193,7 +195,7 @@ Rectangle {
                         KeyNavigation.backtab: name; KeyNavigation.tab: session
                         Keys.onPressed: {
                             if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
-                                sddm.login(name.text, password.text, session.index)
+                                sddm.login(name.text, password.text, sessionIndex)
                                 event.accepted = true
                             }
                         }		
