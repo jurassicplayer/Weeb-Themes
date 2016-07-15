@@ -7,7 +7,6 @@ Rectangle {
     id: container
     width: Screen.width
     height: Screen.height
-    property int sessionIndex: session.index
     TextConstants { id: textConstants }
 
     Connections {
@@ -107,7 +106,7 @@ Rectangle {
                         KeyNavigation.backtab: btnShutdown; KeyNavigation.tab: password
                         Keys.onPressed: {
                             if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
-                                sddm.login(name.text, password.text, sessionIndex)
+                                sddm.login(name.text, password.text, session.index)
                                 event.accepted = true
                             }
                         }
@@ -199,5 +198,11 @@ Rectangle {
                 }
             }
         }
+    }
+    Component.onCompleted: {
+        if (name.text == "")
+            name.focus = true
+        else
+            password.focus = true
     }
 }
