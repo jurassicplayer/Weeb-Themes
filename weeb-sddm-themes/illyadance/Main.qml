@@ -8,7 +8,7 @@ Rectangle {
     width: Screen.width
     height: Screen.height
     TextConstants { id: textConstants }
-
+    
     Connections {
         target: sddm
         onLoginSucceeded: {
@@ -19,26 +19,22 @@ Rectangle {
         }
     }
 
-    /********************************
-               Background
-    *********************************/
-    Rectangle {
-        anchors.fill: parent
-        color: "transparent"
-        Image {
-            id: background
-            anchors.fill: parent
-            source: "background.png"
-            fillMode: Image.PreserveAspectCrop
-        }
-    }
     Item {
         anchors.fill: parent
+        Rectangle {
+            anchors.fill: parent
+            Image {
+                id: bgImage
+                anchors.fill: parent
+                source: "background.png"
+                fillMode: Image.PreserveAspectCrop
+            }
+        }
         MediaPlayer {
             id: mediaPlayer
             source: "resources/vid.webm"
-            autoPlay: true
-            autoLoad: true
+            autoPlay: false
+            autoLoad: false
             loops: -1
         }
         VideoOutput {
@@ -46,16 +42,7 @@ Rectangle {
             anchors.fill: parent
             fillMode: VideoOutput.PreserveAspectCrop
         }
-    }
-
-    /*******************************
-               Foreground
-    ********************************/
-    Rectangle {
-        property variant geometry: screenModel.geometry(screenModel.primary)
-        x: geometry.x; y: geometry.y; width: geometry.width; height: geometry.height
-        color: "transparent"
-
+        
         /********* Hashtag *********/
         Image {
             id: hashtag
@@ -198,11 +185,13 @@ Rectangle {
                 }
             }
         }
+        Component.onCompleted: {
+            if (name.text == "")
+                name.focus = true
+            else
+                password.focus = true
+            mediaPlayer.play()
+        }
     }
-    Component.onCompleted: {
-        if (name.text == "")
-            name.focus = true
-        else
-            password.focus = true
-    }
+
 }
