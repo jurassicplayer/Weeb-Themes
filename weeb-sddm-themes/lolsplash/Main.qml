@@ -19,145 +19,108 @@ Rectangle {
             listView.currentItem.password.text = ""
         }
     }
-    /********** Save Settings ***********/
+    
     Item {
-			id: page
-			state: settings.state
-			states: [
-				State {
-				    name: "active"
-				},
-				State {
-					name: "inactive"
-				}
-			]
-			Settings {
-				id: settings
-				property string state: " active"
-			}
-			Component.onDestruction: {
-				settings.state = page.state
-			}
-		}
-
-    /********************************
-               Background
-    *********************************/
-    Rectangle {
 		anchors.fill: parent
-		color: "transparent"
+		/********* Background *********/
 		Image {
 			id: background
 			anchors.fill: parent
 			source: "background.png"
 			fillMode: Image.PreserveAspectCrop
 		}
-    }
-    Repeater {
-        model: screenModel
-        Item {
-            anchors.fill: parent
-            MediaPlayer {
-                id: mediaPlayer
-                source: "resources/vid.webm"
-                autoPlay: bgtogglearea.bgAnimation ? false : true
-                autoLoad: bgtogglearea.bgAnimation ? false : true
-                loops: -1
-            }
-            VideoOutput {
-				id: videoPlayer
-                source: mediaPlayer
-                anchors.fill: parent
-                fillMode: VideoOutput.PreserveAspectCrop
-            }
-            Audio {
-				id: musicPlayer
-				autoPlay: musictogglearea.musicPlay ? false : true
-				autoLoad: musictogglearea.musicPlay ? false : true
-				source: "resources/bgm.ogg"
-				loops: -1
-            }
-            Column {
-				anchors.bottom: parent.bottom
-				x: 16
-				height: 68
-				spacing: 6
-				Row {
-					spacing: 8
-					Image {
-						id: musicToggle
-						source: musictogglearea.musicPlay ? (musictogglearea.containsMouse || musictogglearea.focus ? "resources/checked-hover.png" : "resources/checked-unpressed.png") : (musictogglearea.containsMouse || musictogglearea.focus ? "resources/unchecked-hover.png" : "resources/unchecked-unpressed.png")
-						MouseArea {
-							id: musictogglearea
-							anchors.top: parent.top
-							anchors.bottom: parent.bottom
-							width: 120
-							property string musicPlay
-							hoverEnabled: true
-							onPressed: if (musicPlay) { 
-								musicPlay = ""
-								musicPlayer.play();
-							} else {
-								musicPlay = "true"
-								musicPlayer.stop();
-							}
-							KeyNavigation.backtab: bgtogglearea; KeyNavigation.tab: bgtogglearea
-							Settings {
-								property alias musicPlay: musictogglearea.musicPlay
-							}
-						}
-					}
-					Text {
-						y: 2
-						font.pixelSize: 10
-						color: "white"
-						text: "Disable Login Music"
-					}
-				}
-				Row {
-					spacing: 8
-					Image {
-						id: bgToggle
-						source: bgtogglearea.bgAnimation ? ( bgtogglearea.containsMouse || bgtogglearea.focus ? "resources/checked-hover.png" : "resources/checked-unpressed.png" ) : ( bgtogglearea.containsMouse || bgtogglearea.focus ? "resources/unchecked-hover.png" : "resources/unchecked-unpressed.png" )
-						MouseArea {
-							id: bgtogglearea
-							anchors.top: parent.top
-							anchors.bottom: parent.bottom
-							width: 150
-							property string bgAnimation
-							hoverEnabled: true
-							onPressed: if (bgAnimation) { 
-								bgAnimation = ""
-								mediaPlayer.play();
-							} else {
-								bgAnimation = "true"
-								mediaPlayer.stop();
-							}
-							KeyNavigation.backtab: musictogglearea; KeyNavigation.tab: musictogglearea
-							Settings {
-								property alias bgAnimation: bgtogglearea.bgAnimation
-							}
-						}
-					}
-					Text {
-						y: 2
-						font.pixelSize: 10
-						color: "white"
-						text: "Disable Menu Animations"
-					}
-				}
-            }   
-        }
-    }
-
-    /*******************************
-               Foreground
-    ********************************/
-    Rectangle {
-        property variant geometry: screenModel.geometry(screenModel.primary)
-        x: geometry.x; y: geometry.y; width: geometry.width; height: geometry.height
-        color: "transparent"
 		
+		MediaPlayer {
+			id: mediaPlayer
+			source: "resources/vid.webm"
+			autoLoad: false
+			loops: -1
+		}
+		VideoOutput {
+			id: videoPlayer
+			source: mediaPlayer
+			anchors.fill: parent
+			fillMode: VideoOutput.PreserveAspectCrop
+		}
+		/********* Audio *********/
+		Audio {
+			id: musicPlayer
+			autoLoad: false
+			source: "resources/bgm.ogg"
+			loops: -1
+		}
+		/********* Toggle *********/
+		Column {
+			anchors.bottom: parent.bottom
+			x: 16
+			height: 68
+			spacing: 6
+			Row {
+				spacing: 8
+				Image {
+					id: musicToggle
+					source: musictogglearea.musicPlay ? (musictogglearea.containsMouse || musictogglearea.focus ? "resources/unchecked-hover.png" : "resources/unchecked-unpressed.png") : (musictogglearea.containsMouse || musictogglearea.focus ? "resources/checked-hover.png" : "resources/checked-unpressed.png")
+					
+					MouseArea {
+						id: musictogglearea
+						anchors.top: parent.top
+						anchors.bottom: parent.bottom
+						width: 120
+						property bool musicPlay: true
+						hoverEnabled: true
+						onPressed: if (musicPlay) { 
+							musicPlay = false
+							musicPlayer.stop();
+						} else {
+							musicPlay = true
+							musicPlayer.play();
+						}
+						KeyNavigation.backtab: bgtogglearea; KeyNavigation.tab: bgtogglearea
+						Settings {
+							property alias musicPlay: musictogglearea.musicPlay
+						}
+					}
+				}
+				Text {
+					y: 2
+					font.pixelSize: 10
+					color: "white"
+					text: "Disable Login Music"
+				}
+			}
+			Row {
+				spacing: 8
+				Image {
+					id: bgToggle
+					source: bgtogglearea.bgAnimation ? ( bgtogglearea.containsMouse || bgtogglearea.focus ? "resources/unchecked-hover.png" : "resources/unchecked-unpressed.png" ) : ( bgtogglearea.containsMouse || bgtogglearea.focus ? "resources/checked-hover.png" : "resources/checked-unpressed.png" )
+					MouseArea {
+						id: bgtogglearea
+						anchors.top: parent.top
+						anchors.bottom: parent.bottom
+						width: 150
+						property bool bgAnimation: true
+						hoverEnabled: true
+						onPressed: if (bgAnimation) { 
+							bgAnimation = false
+							mediaPlayer.stop()
+						} else {
+							bgAnimation = true
+							mediaPlayer.play()
+						}
+						KeyNavigation.backtab: musictogglearea; KeyNavigation.tab: musictogglearea
+						Settings {
+							property alias bgAnimation: bgtogglearea.bgAnimation
+						}
+					}
+				}
+				Text {
+					y: 2
+					font.pixelSize: 10
+					color: "white"
+					text: "Disable Menu Animations"
+				}
+			}
+		}		
         /********* Logo *********/
         Image {
             id: logo
@@ -167,7 +130,6 @@ Rectangle {
             width: 287
             source: "resources/logo.png"
         }
-        
         /********* Login Box *********/
         Image {
             id: loginBoximage
@@ -187,7 +149,6 @@ Rectangle {
             height: 90
             color: "transparent"
             
-            
             Column {
 				y: 12
                 width: parent.width
@@ -202,7 +163,7 @@ Rectangle {
 					height: 17
 				}
 				
-				/*********     Separator      **********/
+				/********* Separator **********/
 				Image {
 					source: "resources/separator.png"
 					width: parent.width; height: 1
@@ -250,7 +211,6 @@ Rectangle {
 						font.pixelSize: 14
 						echoMode: TextInput.Password
                         autoScroll: false
-                        
                         KeyNavigation.backtab: name; KeyNavigation.tab: btnLogin
                         Keys.onPressed: {
                             if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
@@ -271,7 +231,6 @@ Rectangle {
 							id: btnLogin
 							anchors.fill: parent
 							hoverEnabled: true
-							
 							KeyNavigation.backtab: password; KeyNavigation.tab: session
 							onClicked: sddm.login(name.text, password.text, session.index)
 							Keys.onPressed: {
@@ -291,7 +250,7 @@ Rectangle {
 					}
 				}
 				
-				/*********     Separator      **********/
+				/********* Separator **********/
 				Image {
 					source: "resources/separator.png"
 					width: parent.width
@@ -359,11 +318,21 @@ Rectangle {
                 }
             }
         }
-    }
-    Component.onCompleted: {
-        if (name.text == "")
-            name.focus = true
-        else
-            password.focus = true
+        Component.onCompleted: {
+			if (name.text == "")
+				name.focus = true
+			else
+				password.focus = true
+			if (bgtogglearea.bgAnimation) {
+				mediaPlayer.play()
+			} else {
+				mediaPlayer.stop()
+			}
+			if (musictogglearea.musicPlay) {
+				musicPlayer.play()
+			} else {
+				musicPlayer.stop()
+			}
+		}
     }
 }

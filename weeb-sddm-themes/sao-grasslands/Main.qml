@@ -19,23 +19,20 @@ Rectangle {
         }
     }
 
-    /********************************
-               Background
-    *********************************/
-    Rectangle {
+    Item {
         anchors.fill: parent
-        color: "transparent"
+        /********* Background *********/
         Image {
             id: background
             anchors.fill: parent
             source: "background.png"
             fillMode: Image.PreserveAspectCrop
         }
+        /********* Video *********/
         MediaPlayer {
             id: mediaPlayer
             source: "resources/vid.mp4"
-            autoPlay: true
-            autoLoad: true
+            autoLoad: false
             loops: -1
         }
         VideoOutput {
@@ -43,23 +40,13 @@ Rectangle {
             anchors.fill: parent
             fillMode: VideoOutput.PreserveAspectCrop
         }
-    }
-    Audio {
-        id: musicPlayer
-        autoPlay: true
-        autoLoad: true
-        source: "resources/bgm.ogg"
-        loops: -1
-    }
-    
-    /*******************************
-               Foreground
-    ********************************/
-    Rectangle {
-        property variant geometry: screenModel.geometry(screenModel.primary)
-        x: geometry.x; y: geometry.y; width: geometry.width; height: geometry.height
-        color: "transparent"
-
+        /********* Audio *********/
+		Audio {
+			id: musicPlayer
+			autoLoad: false
+			source: "resources/bgm.ogg"
+			loops: -1
+		}
         /********* Login Box *********/
         Rectangle {
             id: loginBox
@@ -190,11 +177,13 @@ Rectangle {
                 index: sessionModel.lastIndex
             }
         }
-    }
-    Component.onCompleted: {
-        if (name.text == "")
-            name.focus = true
-        else
-            password.focus = true
+        Component.onCompleted: {
+			if (name.text == "")
+				name.focus = true
+			else
+				password.focus = true
+			mediaPlayer.play()
+			musicPlayer.play()
+		}
     }
 }

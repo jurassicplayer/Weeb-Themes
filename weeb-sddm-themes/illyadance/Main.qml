@@ -21,19 +21,17 @@ Rectangle {
 
     Item {
         anchors.fill: parent
-        Rectangle {
-            anchors.fill: parent
-            Image {
-                id: bgImage
-                anchors.fill: parent
-                source: "background.png"
-                fillMode: Image.PreserveAspectCrop
-            }
-        }
+        /********* Background *********/
+		Image {
+			id: bgImage
+			anchors.fill: parent
+			source: "background.png"
+			fillMode: Image.PreserveAspectCrop
+		}
+		/********* Video *********/
         MediaPlayer {
             id: mediaPlayer
             source: "resources/vid.webm"
-            autoPlay: false
             autoLoad: false
             loops: -1
         }
@@ -42,7 +40,6 @@ Rectangle {
             anchors.fill: parent
             fillMode: VideoOutput.PreserveAspectCrop
         }
-        
         /********* Hashtag *********/
         Image {
             id: hashtag
@@ -51,7 +48,6 @@ Rectangle {
             anchors.margins: 60
             source: "resources/Illya-Dance.png"
         }
-        
         /********* Login Box *********/
         Image {
             anchors.verticalCenter: parent.verticalCenter
@@ -193,5 +189,4 @@ Rectangle {
             mediaPlayer.play()
         }
     }
-
 }

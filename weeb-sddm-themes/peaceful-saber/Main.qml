@@ -20,111 +20,102 @@ Rectangle {
         }
     }
 
-    /********************************
-               Background
-    *********************************/
-    Rectangle {
+    Item {
 		anchors.fill: parent
-		color: "transparent"
+		/********* Background *********/
 		Image {
 			id: background
 			anchors.fill: parent
 			source: "background.png"
 			fillMode: Image.PreserveAspectCrop
 		}
-    }
-    Audio {
-		id: musicPlayer
-		autoPlay: true
-		autoLoad: true
-		source: "resources/bgm.ogg"
-		loops: -1
-    }
-    ParticleSystem {
-		id: bgparticle
-	}
-
-	Emitter {
-		anchors.fill: parent
-		system: bgparticle
-		emitRate: 80
-		lifeSpan: 4000
-		lifeSpanVariation: 2000
-		size: 3
-		sizeVariation: 8
-		endSize: 3
-		startTime: 1000
-		velocity: AngleDirection{
-			angle: 270
-			angleVariation: 30
-			magnitude: 40
-			magnitudeVariation: 20
+		/********* Audio *********/
+		Audio {
+			id: musicPlayer
+			autoLoad: false
+			source: "resources/bgm.ogg"
+			loops: -1
 		}
-		ImageParticle {
+		/********* Particles *********/
+		ParticleSystem {
+			id: bgparticle
+			paused: true
+		}
+		Emitter {
 			anchors.fill: parent
 			system: bgparticle
-			source: "resources/lightparticle.png"
+			emitRate: 80
+			lifeSpan: 4000
+			lifeSpanVariation: 2000
+			size: 3
+			sizeVariation: 8
+			endSize: 3
+			startTime: 1000
+			velocity: AngleDirection{
+				angle: 270
+				angleVariation: 30
+				magnitude: 40
+				magnitudeVariation: 20
+			}
+			ImageParticle {
+				anchors.fill: parent
+				system: bgparticle
+				source: "resources/lightparticle.png"
+			}
+			Attractor {
+				system: bgparticle
+				anchors.horizontalCenter: parent.horizontalCenter
+				anchors.verticalCenter: parent.verticalCenter
+				anchors.horizontalCenterOffset: parent.width*0.08
+				anchors.verticalCenterOffset: -parent.height*0.1
+				width: parent.width*0.5; height: 200
+				pointX: parent.width*0.25
+				pointY: 0
+				strength: 0.2
+			}
 		}
-		Attractor {
-			system: bgparticle
-			anchors.horizontalCenter: parent.horizontalCenter
-			anchors.verticalCenter: parent.verticalCenter
-			anchors.horizontalCenterOffset: parent.width*0.08
-			anchors.verticalCenterOffset: -parent.height*0.1
-			width: parent.width*0.5; height: 200
-			pointX: parent.width*0.25
-			pointY: 0
-			strength: 0.2
+		ParticleSystem {
+			id: spiral
+			paused: true
 		}
-	}
-	ParticleSystem { id: spiral }
-	Emitter {
-		anchors.bottom: parent.bottom
-		anchors.bottomMargin: parent.height*0.2
-		anchors.right: parent.right
-		anchors.rightMargin: parent.width*0.24
-		width: parent.width*0.38
-		anchors.top: parent.top
-		anchors.topMargin: parent.height*0.24
-		system: spiral
-		emitRate: 10
-		lifeSpan: 3000
-		lifeSpanVariation: 2000
-		size: 6
-		sizeVariation: 3
-		endSize: 3
-		startTime: 3000
-		velocity: AngleDirection{
-			angle: 270
-			angleVariation: 20
-			magnitude: 80
-			magnitudeVariation: 40
-		}
-		ImageParticle {
-			anchors.fill: parent
-			system: spiral
-			source: "resources/lightparticle.png"
-		}
-		Wander{
-			system: spiral
-			height: parent.height
-			width: parent.width
-			y: -parent.width*0.2
+		Emitter {
 			anchors.bottom: parent.bottom
-			affectedParameter: Wander.Position
-			pace: 1000
-			xVariance: parent.width*2
+			anchors.bottomMargin: parent.height*0.2
+			anchors.right: parent.right
+			anchors.rightMargin: parent.width*0.24
+			width: parent.width*0.38
+			anchors.top: parent.top
+			anchors.topMargin: parent.height*0.24
+			system: spiral
+			emitRate: 10
+			lifeSpan: 3000
+			lifeSpanVariation: 2000
+			size: 6
+			sizeVariation: 3
+			endSize: 3
+			startTime: 3000
+			velocity: AngleDirection{
+				angle: 270
+				angleVariation: 20
+				magnitude: 80
+				magnitudeVariation: 40
+			}
+			ImageParticle {
+				anchors.fill: parent
+				system: spiral
+				source: "resources/lightparticle.png"
+			}
+			Wander{
+				system: spiral
+				height: parent.height
+				width: parent.width
+				y: -parent.width*0.2
+				anchors.bottom: parent.bottom
+				affectedParameter: Wander.Position
+				pace: 1000
+				xVariance: parent.width*2
+			}
 		}
-	}
-
-    /*******************************
-               Foreground
-    ********************************/
-    Rectangle {
-        property variant geometry: screenModel.geometry(screenModel.primary)
-        x: geometry.x; y: geometry.y; width: geometry.width; height: geometry.height
-        color: "transparent"
-
         /********* Login Box *********/
         Rectangle {
             id: loginBox
@@ -261,11 +252,14 @@ Rectangle {
                 }
             }
         }
-    }
-    Component.onCompleted: {
-        if (name.text == "")
-            name.focus = true
-        else
-            password.focus = true
+        Component.onCompleted: {
+			if (name.text == "")
+				name.focus = true
+			else
+				password.focus = true
+			musicPlayer.play()
+			bgparticle.resume()
+			spiral.resume()
+		}
     }
 }
