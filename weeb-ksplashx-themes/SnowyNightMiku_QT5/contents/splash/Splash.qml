@@ -138,7 +138,7 @@ Rectangle {
         id: beltMid2
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: text.right
-        width: Screen.width * 0.07; height: 150
+        width: Screen.width * 0.5; height: 150
 		color: "#FFFFFF"
 		opacity: 0
     }
