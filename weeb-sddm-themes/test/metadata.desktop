@@ -1,0 +1,16 @@
+[SddmGreeterTheme]
+Name=Test
+Description=Just a testing theme
+Author=Jurassicplayer
+Copyright=(c) 2016, Jurassicplayer
+License=None
+Type=sddm-theme
+Version=1.0
+Website=https://github.com/jurassicplayer/Weeaboository
+Screenshot=screenshot.jpg
+MainScript=Main.qml
+ConfigFile=theme.conf
+TranslationsDirectory=translations
+Email=jurassicplayer75@gmail.com
+Theme-Id=test-theme
+Theme-API=2.0
