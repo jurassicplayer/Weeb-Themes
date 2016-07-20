@@ -274,7 +274,7 @@ Rectangle {
     }
 
     //System Buttons
-    Row {
+    Column {
         id: buttonContainer
         x: 15
         y: 500
