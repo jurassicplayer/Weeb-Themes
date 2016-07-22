@@ -70,7 +70,7 @@ Rectangle {
     }
 
     // Functions
-    function nextTarget(nextTarget) {
+    function nextTarget(current, step) {
         var targets = [prevUser, password, nextUser, suspendBorder, hibernateBorder, rebootBorder, shutdownBorder];
         for (var target in targets) {
             // Remove invisible targets
@@ -81,21 +81,11 @@ Rectangle {
                 }
             }
         }
-        if (nextTarget.visible) {
-            console.log(nextTarget.objectName)
-            return nextTarget
-        } else {
-            var index = targets.indexOf(nextTarget);
-            if (index < targets.length) {
-                console.log(targets[index+1].objectName)
-                return targets[index+1]
-            } else {
-                console.log(targets[0].objectName)
-                return targets[0]
-            }
-        }
+        var index = targets.indexOf(current)
+        if ((index + step) > targets.length - 1)
+        var newtarget = targets[index+step]
+        return newtarget
     }
-    onFocusChanged: console.log("focus changed")
 
     // Background image
     Image {
@@ -342,34 +332,24 @@ Rectangle {
                     hoverEnabled: true
                     onClicked: sddm.suspend()
                     onEntered: {
-                        buttonContainer.selectedButton = "suspend"
+                        suspendBorder.focus = true
                         buttonContainer.state = "open"
                     }
                     onExited: {
                         buttonContainer.state = "close"
                     }
                 }
-
-
-                KeyNavigation.backtab: container.nextTarget(password); KeyNavigation.tab: container.nextTarget(hibernateBorder)
+                KeyNavigation.backtab: container.nextTarget(suspendBorder, -1); KeyNavigation.tab: container.nextTarget(suspendBorder, 1)
                 Keys.onPressed: {
-                    if (event.key === Qt.Key_Backtab) {
-                        root.state = "open"
+                    if (event.key === (Qt.Key_Backtab || Qt.Key_Tab)) {
                         buttonContainer.state = "close"
                     }
+                    if (event.key === Qt.Key_Backtab) {
+                        root.state = "open"
+                    }
                     if (event.key === Qt.Key_Tab) {
-                        buttonContainer.state = "close"
-                        if (sddm.canHibernate) {
-                            buttonContainer.selectedButton = "hibernate"
-                        } else if (sddm.canReboot) {
-                            buttonContainer.selectedButton = "reboot"
-                        } else if (sddm.canPowerOff) {
-                            buttonContainer.selectedButton = "shutdown"
-                        }
-                        if (sddm.canHibernate || sddm.canReboot || sddm.canPowerOff) {
+                        if ( container.nextTarget(suspendBorder, 1) === (hibernateBorder || rebootBorder || shutdownBorder) ) {
                             buttonContainer.state = "open"
-                        } else {
-                            buttonContainer.state = "close"
                         }
                     }
                 }
@@ -396,7 +376,7 @@ Rectangle {
                 font.pixelSize: buttonContainer.fontSize
                 color: buttonContainer.fontColor
                 text: "Suspend"
-                visible: (buttonContainer.selectedButton == "suspend" & buttonContainer.state == "open") ? true : false
+                visible: (suspendBorder.activeFocus & buttonContainer.state == "open") ? true : false
                 opacity: 0
             }
         }
@@ -418,33 +398,24 @@ Rectangle {
                     hoverEnabled: true
                     onClicked: sddm.hibernate()
                     onEntered: {
-                        buttonContainer.selectedButton = "hibernate"
+                        hibernateBorder.focus = true
                         buttonContainer.state = "open"
                     }
                     onExited: {
                         buttonContainer.state = "close"
                     }
                 }
-                KeyNavigation.backtab: container.nextTarget(suspendBorder); KeyNavigation.tab: container.nextTarget(rebootBorder)
+                KeyNavigation.backtab: container.nextTarget(hibernateBorder, -1); KeyNavigation.tab: container.nextTarget(hibernateBorder, 1)
                 Keys.onPressed: {
-                    if (event.key === Qt.Key_Backtab) {
+                    if (event.key === Qt.Key_Backtab || event.key === Qt.Key_Tab) {
                         buttonContainer.state = "close"
-                        buttonContainer.selectedButton = "suspend"
-                        buttonContainer.state = "open"
+                    }
+                    if (event.key === Qt.Key_Backtab) {
+                        root.state = "open"
                     }
                     if (event.key === Qt.Key_Tab) {
-                        buttonContainer.state = "close"
-                        if (sddm.canHibernate) {
-                            buttonContainer.selectedButton = "hibernate"
-                        } else if (sddm.canReboot) {
-                            buttonContainer.selectedButton = "reboot"
-                        } else if (sddm.canPowerOff) {
-                            buttonContainer.selectedButton = "shutdown"
-                        }
-                        if (sddm.canHibernate || sddm.canReboot || sddm.canPowerOff) {
+                        if ( container.nextTarget(hibernateBorder, 1) == (suspendBorder || rebootBorder || shutdownBorder) ){
                             buttonContainer.state = "open"
-                        } else {
-                            buttonContainer.state = "close"
                         }
                     }
                 }
@@ -471,7 +442,7 @@ Rectangle {
                 font.pixelSize: buttonContainer.fontSize
                 color: buttonContainer.fontColor
                 text: "Hibernate"
-                visible: (buttonContainer.selectedButton == "hibernate" & buttonContainer.state == "open") ? true : false
+                visible: (hibernateBorder.activeFocus & buttonContainer.state == "open") ? true : false
                 opacity: 0
             }
         }
@@ -609,12 +580,12 @@ Rectangle {
                 name: "open"
 
                 PropertyChanges {
-                    target: if (buttonContainer.selectedButton == "suspend") suspendBorder; else if (buttonContainer.selectedButton == "hibernate") hibernateBorder; else if (buttonContainer.selectedButton == "reboot") rebootBorder; else if (buttonContainer.selectedButton == "shutdown") shutdownBorder;
+                    target: if (suspendBorder.activeFocus) suspendBorder; else if (hibernateBorder.activeFocus) hibernateBorder; else if (buttonContainer.selectedButton == "reboot") rebootBorder; else if (buttonContainer.selectedButton == "shutdown") shutdownBorder;
                     width: buttonContainer.width
                     radius: 5
                 }
                 PropertyChanges {
-                    target: if (buttonContainer.selectedButton == "suspend") suspendText; else if (buttonContainer.selectedButton == "hibernate") hibernateText; else if (buttonContainer.selectedButton == "reboot") rebootText; else if (buttonContainer.selectedButton == "shutdown") shutdownText;
+                    target: if (suspendBorder.activeFocus) suspendText; else if (hibernateBorder.activeFocus) hibernateText; else if (buttonContainer.selectedButton == "reboot") rebootText; else if (buttonContainer.selectedButton == "shutdown") shutdownText;
                     opacity: 1
                 }
             },
