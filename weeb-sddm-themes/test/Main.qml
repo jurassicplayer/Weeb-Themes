@@ -9,7 +9,6 @@ Rectangle {
     id: container
     width: Screen.width
     height: Screen.height
-    state: "close"
     color: "white"
     TextConstants { id: textConstants }
 
@@ -82,25 +81,53 @@ Rectangle {
             }
         }
         var index = targets.indexOf(current)
-        if ((index + step) > targets.length - 1)
-        var newtarget = targets[index+step]
-        return newtarget
+        if ( (index + step) > targets.length - 1 ) {
+            return targets[0]
+        } else if ( (index + step) == -1 ) {
+            return targets[targets.length - 1]
+        } else {
+            return targets[index+step]
+        }
     }
 
-    // Background image
-    Image {
-        id: backgroundImage
+    // Background media
+    Item {
         anchors.fill: parent
-        fillMode: Image.PreserveAspectCrop
-        property string imageID: (Math.floor(Math.random() * (8 - 1 + 1)) + 1);
-        source: "resources/wallpapers/"+imageID
-        MouseArea {
+        /********* Image *********/
+        Image {
+            id: backgroundImage
             anchors.fill: parent
-            onClicked: {
-                if (root.state = "open") root.state = "close"
-                if (buttonContainer.state = "open") buttonContainer.state = "close"
+            fillMode: Image.PreserveAspectCrop
+            property string imageID: (Math.floor(Math.random() * (8 - 1 + 1)) + 1);
+            source: "resources/wallpapers/"+imageID
+            MouseArea {
+                anchors.fill: parent
+                onClicked: backgroundImage.focus = true
+            }
+            Keys.onPressed: {
+                if (event.key === Qt.Key_Backtab) shutdownBorder.focus = true;
+                else if (event.key === Qt.Key_Tab) password.focus = true;
             }
         }
+        /********* Video *********
+        MediaPlayer {
+            id: mediaPlayer
+            source: "resources/vid.mp4"
+            autoLoad: false
+            loops: -1
+        }
+        VideoOutput {
+            source: mediaPlayer
+            anchors.fill: parent
+            fillMode: VideoOutput.PreserveAspectCrop
+        }
+        ********* Audio *********
+        Audio {
+            id: musicPlayer
+            autoLoad: false
+            source: "resources/bgm.ogg"
+            loops: -1
+        }*/
     }
 
     // Login container
@@ -221,7 +248,13 @@ Rectangle {
                 MouseArea {
                     id: avatarArea
                     anchors.fill: parent
-                    onClicked: root.state == "open" ? root.state = "close" : root.state = "open"
+                    onClicked: {
+                        if (password.focus) {
+                            backgroundImage.focus = true
+                        } else {
+                            password.focus = true
+                        }
+                    }
                 }
             }
             Image {
@@ -260,49 +293,13 @@ Rectangle {
                 }
             }
         }
-
-        states: [
-            State {
-                name: "open"
-                PropertyChanges {
-                    target: loginBorder
-                    y: loginRectangleTemplate.y
-                    radius: loginRectangleTemplate.radius
-                    height: loginRectangleTemplate.height
-                    width: loginRectangleTemplate.width
-                    anchors.margins: 0
-                }
-                PropertyChanges {
-                    target: loginContainer
-                    visible: true
-                }
-                PropertyChanges {
-                    target: avatarBorder
-                    y: (root.height - avatarBorder.height) * 0.5 - (avatarBorder.height / 3)
-                }
-            },
-            State {
-                name: "close"
-            }
-        ]
-        transitions: [
-            Transition {
-                PropertyAnimation {
-                    properties: "radius, anchors.margins, width, height, y, opacity"
-                    duration: 700
-                    easing.type: Easing.OutElastic
-                }
-            }
-        ]
     }
 
-    //System Buttons
+    //Session Buttons
     Column {
         id: buttonContainer
         x: 15
         y: 15
-        state: "close"
-        property string selectedButton
 
         // Customizing properties
         width: 100
@@ -326,31 +323,19 @@ Rectangle {
                 radius: suspend.height
                 color: buttonContainer.buttonColor
                 opacity: buttonContainer.buttonOpacity
-                focus: true
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
                     onClicked: sddm.suspend()
-                    onEntered: {
-                        suspendBorder.focus = true
-                        buttonContainer.state = "open"
-                    }
-                    onExited: {
-                        buttonContainer.state = "close"
-                    }
+                    onEntered: suspendBorder.focus = true
+                    onExited: backgroundImage.focus = true
                 }
-                KeyNavigation.backtab: container.nextTarget(suspendBorder, -1); KeyNavigation.tab: container.nextTarget(suspendBorder, 1)
+                KeyNavigation.backtab: container.nextTarget(suspendBorder, -1)
+                KeyNavigation.tab: container.nextTarget(suspendBorder, 1)
                 Keys.onPressed: {
-                    if (event.key === (Qt.Key_Backtab || Qt.Key_Tab)) {
-                        buttonContainer.state = "close"
-                    }
-                    if (event.key === Qt.Key_Backtab) {
-                        root.state = "open"
-                    }
-                    if (event.key === Qt.Key_Tab) {
-                        if ( container.nextTarget(suspendBorder, 1) === (hibernateBorder || rebootBorder || shutdownBorder) ) {
-                            buttonContainer.state = "open"
-                        }
+                    if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
+                        sddm.suspend()
+                        event.accepted = true
                     }
                 }
             }
@@ -376,7 +361,7 @@ Rectangle {
                 font.pixelSize: buttonContainer.fontSize
                 color: buttonContainer.fontColor
                 text: "Suspend"
-                visible: (suspendBorder.activeFocus & buttonContainer.state == "open") ? true : false
+                visible: suspendBorder.focus
                 opacity: 0
             }
         }
@@ -397,26 +382,15 @@ Rectangle {
                     anchors.fill: parent
                     hoverEnabled: true
                     onClicked: sddm.hibernate()
-                    onEntered: {
-                        hibernateBorder.focus = true
-                        buttonContainer.state = "open"
-                    }
-                    onExited: {
-                        buttonContainer.state = "close"
-                    }
+                    onEntered: hibernateBorder.focus = true
+                    onExited: backgroundImage.focus = true
                 }
-                KeyNavigation.backtab: container.nextTarget(hibernateBorder, -1); KeyNavigation.tab: container.nextTarget(hibernateBorder, 1)
+                KeyNavigation.backtab: container.nextTarget(hibernateBorder, -1)
+                KeyNavigation.tab: container.nextTarget(hibernateBorder, 1)
                 Keys.onPressed: {
-                    if (event.key === Qt.Key_Backtab || event.key === Qt.Key_Tab) {
-                        buttonContainer.state = "close"
-                    }
-                    if (event.key === Qt.Key_Backtab) {
-                        root.state = "open"
-                    }
-                    if (event.key === Qt.Key_Tab) {
-                        if ( container.nextTarget(hibernateBorder, 1) == (suspendBorder || rebootBorder || shutdownBorder) ){
-                            buttonContainer.state = "open"
-                        }
+                    if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
+                        sddm.hibernate()
+                        event.accepted = true
                     }
                 }
             }
@@ -442,7 +416,7 @@ Rectangle {
                 font.pixelSize: buttonContainer.fontSize
                 color: buttonContainer.fontColor
                 text: "Hibernate"
-                visible: (hibernateBorder.activeFocus & buttonContainer.state == "open") ? true : false
+                visible: hibernateBorder.focus
                 opacity: 0
             }
         }
@@ -451,7 +425,7 @@ Rectangle {
             height: (buttonContainer.height - (3 * buttonContainer.spacing)) / 4
             width: reboot.height
             color: "transparent"
-            visible: sddm.canReboot
+            //visible: sddm.canReboot
             Rectangle {
                 id: rebootBorder
                 width: reboot.height
@@ -463,25 +437,15 @@ Rectangle {
                     anchors.fill: parent
                     hoverEnabled: true
                     onClicked: sddm.reboot()
-                    onEntered: {
-                        buttonContainer.selectedButton = "reboot"
-                        buttonContainer.state = "open"
-                    }
-                    onExited: {
-                        buttonContainer.state = "close"
-                    }
+                    onEntered: rebootBorder.focus = true
+                    onExited: backgroundImage.focus = true
                 }
-                KeyNavigation.backtab: hibernateBorder; KeyNavigation.tab: shutdownBorder
+                KeyNavigation.backtab: container.nextTarget(rebootBorder, -1)
+                KeyNavigation.tab: container.nextTarget(rebootBorder, 1)
                 Keys.onPressed: {
-                    if (event.key === Qt.Key_Backtab) {
-                        buttonContainer.state = "close"
-                        buttonContainer.selectedButton = "hibernate"
-                        buttonContainer.state = "open"
-                    }
-                    if (event.key === Qt.Key_Tab) {
-                        buttonContainer.state = "close"
-                        buttonContainer.selectedButton = "shutdown"
-                        buttonContainer.state = "open"
+                    if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
+                        sddm.reboot()
+                        event.accepted = true
                     }
                 }
             }
@@ -507,7 +471,7 @@ Rectangle {
                 font.pixelSize: buttonContainer.fontSize
                 color: buttonContainer.fontColor
                 text: "Reboot"
-                visible: (buttonContainer.selectedButton == "reboot" & buttonContainer.state == "open") ? true : false
+                visible: rebootBorder.focus
                 opacity: 0
             }
         }
@@ -516,7 +480,7 @@ Rectangle {
             height: (buttonContainer.height - (3 * buttonContainer.spacing)) / 4
             width: shutdown.height
             color: "transparent"
-            visible: sddm.canPowerOff
+            //visible: sddm.canPowerOff
             Rectangle {
                 id: shutdownBorder
                 width: shutdown.height
@@ -528,24 +492,15 @@ Rectangle {
                     anchors.fill: parent
                     hoverEnabled: true
                     onClicked: sddm.powerOff()
-                    onEntered: {
-                        buttonContainer.selectedButton = "shutdown"
-                        buttonContainer.state = "open"
-                    }
-                    onExited: {
-                        buttonContainer.state = "close"
-                    }
+                    onEntered: shutdownBorder.focus = true
+                    onExited: backgroundImage.focus = true
                 }
-                KeyNavigation.backtab: suspendBorder; KeyNavigation.tab: rebootBorder
+                KeyNavigation.backtab: container.nextTarget(shutdownBorder, -1)
+                KeyNavigation.tab: container.nextTarget(shutdownBorder, 1)
                 Keys.onPressed: {
-                    if (event.key === Qt.Key_Backtab) {
-                        buttonContainer.state = "close"
-                        buttonContainer.selectedButton = "reboot"
-                        buttonContainer.state = "open"
-                    }
-                    if (event.key === Qt.Key_Tab) {
-                        root.state = "open"
-                        buttonContainer.state = "close"
+                    if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
+                        sddm.powerOff()
+                        event.accepted = true
                     }
                 }
             }
@@ -571,44 +526,111 @@ Rectangle {
                 font.pixelSize: buttonContainer.fontSize
                 color: buttonContainer.fontColor
                 text: "Shutdown"
-                visible: (buttonContainer.selectedButton == "shutdown" & buttonContainer.state == "open") ? true : false
+                visible: shutdownBorder.focus
                 opacity: 0
             }
         }
-        states: [
-            State {
-                name: "open"
-
-                PropertyChanges {
-                    target: if (suspendBorder.activeFocus) suspendBorder; else if (hibernateBorder.activeFocus) hibernateBorder; else if (buttonContainer.selectedButton == "reboot") rebootBorder; else if (buttonContainer.selectedButton == "shutdown") shutdownBorder;
-                    width: buttonContainer.width
-                    radius: 5
-                }
-                PropertyChanges {
-                    target: if (suspendBorder.activeFocus) suspendText; else if (hibernateBorder.activeFocus) hibernateText; else if (buttonContainer.selectedButton == "reboot") rebootText; else if (buttonContainer.selectedButton == "shutdown") shutdownText;
-                    opacity: 1
-                }
-            },
-            State {
-                name: "close"
-            }
-        ]
-        transitions: [
-            Transition {
-                PropertyAnimation {
-                    properties: "radius, width, height"
-                    duration: 300
-                    easing.type: Easing.OutExpo
-                }
-                PropertyAnimation {
-                    properties: "opacity"
-                    to: 1
-                    duration: 200
-                    easing.type: Easing.InExpo
-                }
-            }
-        ]
     }
 
+
+    Component.onCompleted: {
+        if ( userList.get(userList.currentIndex).needsPassword ) {
+            password.focus = true
+        }
+        //mediaPlayer.play()
+        //musicPlayer.play()
+    }
+    // States and Transitions
+    states: [
+        // Login box state
+        State {
+            when: (password.focus || prevUser.focus || nextUser.focus)
+            PropertyChanges {
+                target: loginBorder
+                y: loginRectangleTemplate.y
+                radius: loginRectangleTemplate.radius
+                height: loginRectangleTemplate.height
+                width: loginRectangleTemplate.width
+                anchors.margins: 0
+            }
+            PropertyChanges {
+                target: loginContainer
+                visible: true
+            }
+            PropertyChanges {
+                target: avatarBorder
+                y: (root.height - avatarBorder.height) * 0.5 - (avatarBorder.height / 3)
+            }
+        },
+        // Session button states
+        State {
+            when: suspendBorder.focus
+            PropertyChanges { target: suspendBorder; width: buttonContainer.width; radius: 5; }
+            PropertyChanges { target: suspendText; opacity: 1; }
+        },
+        State {
+            when: hibernateBorder.focus
+            PropertyChanges { target: hibernateBorder; width: buttonContainer.width; radius: 5; }
+            PropertyChanges { target: hibernateText; opacity: 1; }
+        },
+        State {
+            when: rebootBorder.focus
+            PropertyChanges { target: rebootBorder; width: buttonContainer.width; radius: 5; }
+            PropertyChanges { target: rebootText; opacity: 1; }
+        },
+        State {
+            when: shutdownBorder.focus
+            PropertyChanges { target: shutdownBorder; width: buttonContainer.width; radius: 5; }
+            PropertyChanges { target: shutdownText; opacity: 1; }
+        }
+    ]
+    transitions: [
+        Transition {
+            ParallelAnimation {
+                id: animations
+                property variant buttonEasing: Easing.OutExpo
+                property variant textEasing: Easing.InExpo
+                PropertyAnimation { target: loginBorder; properties: "y, radius, width, height, anchors.margins"; duration: 700; easing.type: Easing.OutElastic }
+                PropertyAnimation { target: avatarBorder; properties: "y"; duration: 700; easing.type: Easing.OutElastic }
+                PropertyAnimation { target: suspendBorder; properties: "radius, width, height"; duration: 300; easing.type: animations.buttonEasing }
+                PropertyAnimation { target: hibernateBorder; properties: "radius, width, height"; duration: 300; easing.type: animations.buttonEasing  }
+                PropertyAnimation { target: rebootBorder; properties: "radius, width, height"; duration: 300; easing.type: animations.buttonEasing  }
+                PropertyAnimation { target: shutdownBorder; properties: "radius, width, height"; duration: 300; easing.type: animations.buttonEasing  }
+                PropertyAnimation { target: suspendText; properties: "opacity"; duration: 200; easing.type: animations.textEasing }
+                PropertyAnimation { target: hibernateText; properties: "opacity"; duration: 200; easing.type: animations.textEasing }
+                PropertyAnimation { target: rebootText; properties: "opacity"; duration: 200; easing.type: animations.textEasing }
+                PropertyAnimation { target: shutdownText; properties: "opacity"; duration: 200; easing.type: animations.textEasing }
+            }
+        }
+    ]
+
+    // For testing purposes
+    Item {
+        id: toss
+        width: 100
+        height: 400
+        x: 200
+        y: 60
+        Column {
+            Item {
+                Text { color: "white"; text: "User: " }
+                Text { x: 35; color: "white"; text: if (userList.complete) (userList.get(userList.currentIndex).name == "" ? userList.get(userList.currentIndex).realName : userList.get(userList.currentIndex).name) }
+            }
+            Text {
+                id: tossText
+                color: "white"
+                property string userDir: if (userList.complete) userList.get(userList.currentIndex).homeDir
+                property string userIcon: if (userList.complete) userList.get(userList.currentIndex).icon
+                property bool userNeedsPassword: if (userList.complete) userList.get(userList.currentIndex).needsPassword
+                text: "\nDir: " + userDir + "\nIcon: " + userIcon + "\nNeeds Password: " + userNeedsPassword
+            }
+            Text {
+                color: (elementFocus != "none") ? "Green" : "Red"
+                font.bold: Font.DemiBold
+                property string elementFocus: if (suspendBorder.focus) "suspendBorder"; else if (hibernateBorder.focus) "hibernateBorder"; else if (rebootBorder.focus) "rebootBorder"; else if (shutdownBorder.focus) "shutdownBorder"; else if (prevUser.focus) "prevUser"; else if (password.focus) "password"; else if (nextUser.focus) "nextUser"; else if (backgroundImage.focus) "background"; else "none"
+                text: "Focus: " + elementFocus
+            }
+        }
+    }
 
 }
