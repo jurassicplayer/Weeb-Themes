@@ -15,7 +15,7 @@ Rectangle {
     Timer {
         id: notificationResetTimer
         interval: 3000
-        onTriggered: passwordText.text = "Password"
+        onTriggered: passwordText.text = password.text ? "" : "Password"
     }
     Connections {
         target: sddm
@@ -24,7 +24,7 @@ Rectangle {
         onLoginFailed: {
             notificationResetTimer.restart()
             password.clear()
-            passwordText.text = "Incorrect password"
+            passwordText.text = password.text ? "" : "Incorrect password"
         }
     }
 
@@ -159,7 +159,7 @@ Rectangle {
                 id: loginContainer
                 visible: false
                 anchors.fill: parent
-                property int textMargin: 15
+                property int textMargin: 10
                 Item {
                     id:loginUser
                     width: parent.width
