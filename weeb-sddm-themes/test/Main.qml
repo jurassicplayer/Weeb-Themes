@@ -15,7 +15,7 @@ Rectangle {
     Timer {
         id: notificationResetTimer
         interval: 3000
-        onTriggered: notification = ""
+        onTriggered: passwordText.text = "Password"
     }
     Connections {
         target: sddm
@@ -23,8 +23,8 @@ Rectangle {
         }
         onLoginFailed: {
             notificationResetTimer.restart()
-            txtMessage.text = textConstants.loginFailed
             password.clear()
+            passwordText.text = "Incorrect password"
         }
     }
 
@@ -191,12 +191,21 @@ Rectangle {
                         clip: true
                         echoMode: TextInput.Password
                         Text {
+                            id: passwordText
                             anchors.fill: parent
                             font.pixelSize: 13
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                             text: password.text ? "" : "Password"
                             color: "#656565"
+                        }
+                        KeyNavigation.backtab: prevUser
+                        KeyNavigation.tab: nextUser
+                        Keys.onPressed: {
+                            if (event.key === Qt.Key_Return || event.key == Qt.Key_Enter) {
+                                sddm.login(userName.text, password.text, sessionModel.lastIndex)
+                                event.accepted = true
+                            }
                         }
                     }
                 }
@@ -208,14 +217,45 @@ Rectangle {
             Rectangle {
                 id: prevUser
                 anchors.verticalCenter: avatarBorder.verticalCenter
-                x: ( parent.width - prevUser.width ) * 0.10
+                x: (parent.width * prevUser.iconX) - (prevUser.width / 2)  // Don't use this value for X placement
                 width: avatarBorder.width * 0.35
                 height: prevUser.width
                 radius: prevUser.width
+                property bool pUToggle: if (prevUser.focus) { pUWidth.running = true; pUX.running = true; true;} else { pUWidth.running = false; pUX.running = false; false; }
+                property double iconX: 0.15  // Use this value for X placement (percentage of root.width)
+                property double maxSize: 1.25
+                property int animationDuration: 300
+                SequentialAnimation on x {
+                    id:pUX
+                    running:false
+                    loops: Animation.Infinite
+                    alwaysRunToEnd: true
+                    PropertyAnimation { from: ((root.width * prevUser.iconX) - (prevUser.width / 2)); to: ((root.width * prevUser.iconX) - (prevUser.width * prevUser.maxSize / 2)); duration: prevUser.animationDuration }
+                    PropertyAnimation { from: ((root.width * prevUser.iconX) - (prevUser.width * prevUser.maxSize / 2)); to: ((root.width * prevUser.iconX) - (prevUser.width / 2)); duration: prevUser.animationDuration }
+                }
+                SequentialAnimation on width {
+                    id: pUWidth
+                    running: false
+                    loops: Animation.Infinite
+                    alwaysRunToEnd: true
+                    PropertyAnimation { from: prevUser.width; to: prevUser.width * prevUser.maxSize; duration: prevUser.animationDuration }
+                    PropertyAnimation { from: prevUser.width * prevUser.maxSize; to: prevUser.width; duration: prevUser.animationDuration }
+                }
                 MouseArea {
                     id: prevUserArea
                     anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: { pUWidth.running = true; pUX.running = true }
+                    onExited: { pUWidth.running = false; pUX.running = false }
                     onClicked: {
+                        userList.decrementCurrentIndex()
+                        password.clear()
+                    }
+                }
+                KeyNavigation.backtab: shutdownBorder
+                KeyNavigation.tab: password
+                Keys.onPressed: {
+                    if (event.key == Qt.Key_Return || event.key == Qt.Key_Enter || event.key == Qt.Key_Space) {
                         userList.decrementCurrentIndex()
                         password.clear()
                     }
@@ -224,14 +264,45 @@ Rectangle {
             Rectangle {
                 id: nextUser
                 anchors.verticalCenter: avatarBorder.verticalCenter
-                x: ( parent.width - nextUser.width ) * 0.90
+                x: (parent.width * nextUser.iconX) - (nextUser.width / 2)  // Don't use this value for X placement
                 width: avatarBorder.width * 0.35
                 height: nextUser.width
                 radius: nextUser.width
+                property bool nUToggle: if (nextUser.focus) { nUWidth.running = true; nUX.running = true; true;} else { nUWidth.running = false; nUX.running = false; false; }
+                property double iconX: 0.85  // Use this value for X placement (percentage of root.width)
+                property double maxSize: prevUser.maxSize
+                property int animationDuration: prevUser.animationDuration
+                SequentialAnimation on x {
+                    id:nUX
+                    running:false
+                    loops: Animation.Infinite
+                    alwaysRunToEnd: true
+                    PropertyAnimation { from: ((root.width * nextUser.iconX) - (nextUser.width / 2)); to: ((root.width * nextUser.iconX) - (nextUser.width * nextUser.maxSize / 2)); duration: nextUser.animationDuration }
+                    PropertyAnimation { from: ((root.width * nextUser.iconX) - (nextUser.width * nextUser.maxSize / 2)); to: ((root.width * nextUser.iconX) - (nextUser.width / 2)); duration: nextUser.animationDuration }
+                }
+                SequentialAnimation on width {
+                    id: nUWidth
+                    running: false
+                    loops: Animation.Infinite
+                    alwaysRunToEnd: true
+                    PropertyAnimation { from: nextUser.width; to: nextUser.width * nextUser.maxSize; duration: nextUser.animationDuration }
+                    PropertyAnimation { from: nextUser.width * nextUser.maxSize; to: nextUser.width; duration: nextUser.animationDuration }
+                }
                 MouseArea {
                     id: nextUserArea
                     anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: { nUWidth.running = true; nUX.running = true }
+                    onExited: { nUWidth.running = false; nUX.running = false }
                     onClicked: {
+                        userList.incrementCurrentIndex()
+                        password.clear()
+                    }
+                }
+                KeyNavigation.backtab: password
+                KeyNavigation.tab: suspendBorder
+                Keys.onPressed: {
+                    if (event.key == Qt.Key_Return || event.key == Qt.Key_Enter || event.key == Qt.Key_Space) {
                         userList.incrementCurrentIndex()
                         password.clear()
                     }
