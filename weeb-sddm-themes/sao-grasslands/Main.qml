@@ -79,7 +79,7 @@ Rectangle {
                         KeyNavigation.backtab: btnShutdown; KeyNavigation.tab: password
                         Keys.onPressed: {
                             if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
-                                sddm.login(name.text, password.text, session.index)
+                                sddm.login(name.text, password.text, menu_session.index)
                                 event.accepted = true
                             }
                         }
@@ -105,7 +105,7 @@ Rectangle {
                         KeyNavigation.backtab: name; KeyNavigation.tab: session
                         Keys.onPressed: {
                             if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
-                                sddm.login(name.text, password.text, session.index)
+                                sddm.login(name.text, password.text, menu_session.index)
                                 event.accepted = true
                             }
                         }       
