@@ -15,7 +15,7 @@ Rectangle {
     Timer {
         id: notificationResetTimer
         interval: 3000
-        onTriggered: passwordText.text = password.text ? "" : "Password"
+        onTriggered: { passwordIncorrect.visible = false; passwordText.visible = true }
     }
     Connections {
         target: sddm
@@ -24,7 +24,8 @@ Rectangle {
         onLoginFailed: {
             notificationResetTimer.restart()
             password.clear()
-            passwordText.text = password.text ? "" : "Incorrect password"
+            passwordText.visible = false
+            passwordIncorrect.visible = true
         }
     }
 
@@ -197,6 +198,16 @@ Rectangle {
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                             text: password.text ? "" : "Password"
+                            color: "#656565"
+                        }
+                        Text {
+                            id: passwordIncorrect
+                            anchors.fill: parent
+                            visible: false
+                            font.pixelSize: 13
+                            verticalAlignment: Text.AlignVCenter
+                            horizontalAlignment: Text.AlignHCenter
+                            text: password.text ? "" : "Incorrect password"
                             color: "#656565"
                         }
                         KeyNavigation.backtab: prevUser
