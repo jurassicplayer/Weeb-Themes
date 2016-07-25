@@ -10,7 +10,10 @@ Rectangle {
     width: Screen.width
     height: Screen.height
     color: "white"
-    TextConstants { id: textConstants }
+    // Meh, it might be good to keep at least one reference to it around so I at least know that SDDM provides
+    // text constants somewhere in the event that I don't want to use my own words somewhere.
+    // On that note, there are other SDDM components that are available...I could make my own.
+    // TextConstants { id: textConstants }
 
     Timer {
         id: notificationResetTimer
