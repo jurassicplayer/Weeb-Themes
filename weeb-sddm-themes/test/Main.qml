@@ -10,7 +10,7 @@ Rectangle {
     width: Screen.width
     height: Screen.height
     color: "white"
-    TextConstants { id: textConstants }
+    //TextConstants { id: textConstants }
 
     Timer {
         id: notificationResetTimer
@@ -614,6 +614,27 @@ Rectangle {
         }
     }
 
+    //Session Menu
+    Column {
+        id: sddmElements
+        x: 150
+        y: 200
+        width: parent.width - sddmElements.x
+        height: parent.height - sddmElements.y
+        ComboBox {
+            id: menu_session
+            arrowIcon: "resources/session_button_template.svg"
+            model: sessionModel
+            index: sessionModel.lastIndex
+        }
+        Clock { id: clock }
+        ImageButton { id: imageButton; source:"resources/session_button_template.svg";}
+        LayoutBox {id: kbdlayout}
+        PictureBox { id: pitureBox; name: userName.text; icon: avatarImage.source; password: password.text }
+        TextBox { id: textBox }
+        PasswordBox {id: passwordBox }
+
+    }
 
     Component.onCompleted: {
         if ( userList.get(userList.currentIndex).needsPassword ) {
