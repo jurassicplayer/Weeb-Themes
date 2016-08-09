@@ -8,15 +8,13 @@ Rectangle {
     id: container
     width: Screen.width
     height: Screen.height
-    TextConstants { id: textConstants }
 
     Connections {
         target: sddm
         onLoginSucceeded: {
         }
         onLoginFailed: {
-            txtMessage.text = textConstants.loginFailed
-            listView.currentItem.password.text = ""
+            password.text = ""
         }
     }
     
@@ -214,7 +212,7 @@ Rectangle {
                         KeyNavigation.backtab: name; KeyNavigation.tab: btnLogin
                         Keys.onPressed: {
                             if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
-                                sddm.login(name.text, password.text, session.index)
+                                sddm.login(name.text, password.text, menu_session.index)
                                 event.accepted = true
                             }
                         }
@@ -232,10 +230,10 @@ Rectangle {
 							anchors.fill: parent
 							hoverEnabled: true
 							KeyNavigation.backtab: password; KeyNavigation.tab: session
-							onClicked: sddm.login(name.text, password.text, session.index)
+                            onClicked: sddm.login(name.text, password.text, menu_session.index)
 							Keys.onPressed: {
 								if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
-									sddm.login(name.text, password.text, session.index)
+                                    sddm.login(name.text, password.text, menu_session.index)
 									event.accepted = true
 								}
 							}

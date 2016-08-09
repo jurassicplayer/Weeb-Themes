@@ -7,15 +7,13 @@ Rectangle {
     id: container
     width: Screen.width
     height: Screen.height
-    TextConstants { id: textConstants }
 
     Connections {
         target: sddm
         onLoginSucceeded: {
         }
         onLoginFailed: {
-            txtMessage.text = textConstants.loginFailed
-            listView.currentItem.password.text = ""
+            password.text = ""
         }
     }
 
