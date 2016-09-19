@@ -1,7 +1,7 @@
-import QtQuick 2.7
+import QtQuick 2.0
 import SddmComponents 2.0
-import QtMultimedia 5.6
-import QtQuick.Window 2.2
+import QtMultimedia 5.0
+import QtQuick.Window 2.0
 import QtQuick.Particles 2.0
 
 Rectangle {
