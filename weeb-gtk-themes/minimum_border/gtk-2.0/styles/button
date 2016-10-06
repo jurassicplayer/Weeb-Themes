@@ -1,0 +1,54 @@
+style "button" 
+{
+  
+	xthickness = 2
+	ythickness = 2
+
+  engine "pixmap"
+  {
+    image
+    {
+      function			= BOX
+      detail				= "buttondefault"
+      recolorable		= TRUE
+      file				= "Buttons/button-default.png"
+      border			= { 4, 4, 4, 4 }
+      stretch			= TRUE
+    }
+    image
+    {
+      function			= BOX
+      state				= PRELIGHT
+      recolorable		= TRUE
+      file				= "Buttons/button-prelight.png"
+      border			= { 4, 4, 4, 4 }
+      stretch			= TRUE
+    }
+    image
+    {
+      function			= BOX
+      state				= ACTIVE
+      file				= "Buttons/button-pressed.png"
+      border			= { 4, 4, 4, 4 }
+      stretch			= TRUE
+    }	
+    image 
+   {
+     function			= BOX
+     state				= INSENSITIVE
+     file					= "Buttons/button-insensitive.png"
+     border			= { 4, 4, 4, 4 }
+     stretch			= TRUE
+    }
+    image 
+    {
+      function			= BOX
+      file				= "Buttons/button-normal.png"		
+      border			= { 4, 4, 4, 4 }
+      stretch			= TRUE
+     }	
+  }
+}
+
+class "GtkButton"	style "button"
+widget_class "*GtkToggleButton*"   style "button"

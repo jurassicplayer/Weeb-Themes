@@ -1,0 +1,9 @@
+[X-GNOME-Metatheme]
+Name=Minimum Miku Bordered
+Type=X-GNOME-Metatheme
+Comment=A minimal Hatsune Miku theme with thickened borders
+Encoding=UTF-8
+GtkTheme=Minimum Miku Bordered
+IconTheme=gnome
+CursorTheme=Adwaita
+CursorSize=16
