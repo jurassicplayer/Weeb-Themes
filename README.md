@@ -12,20 +12,20 @@ libraries from QT5.7 (QtQuick 2.7, etc.), though the themes don't require anythi
 
 
 
-#####Weeb-SDDM-Themes#####
+#####Weeb-SDDM-Themes
 - Dependencies:
     - qt5-multimedia
     - gstreamer0.10-ffmpeg (.mp4)
     - gstreamer0.10-good-plugins (.webm, autoaudiosink)
     - gstreamer0.10-base-plugins (.ogg)
 
-#####Weeb-GTK-Themes#####
+#####Weeb-GTK-Themes
 
-#####Weeb-KSplashX-Themes#####
+#####Weeb-KSplashX-Themes
 - Dependencies:
     - qtquick
 
-#####Weeb-Grub-Themes#####
+#####Weeb-Grub-Themes
 Currently there is only a single script for previewing/assisting in creating
 grub_init_tune originally from http://www.iavit.org/~john/debian/grub.html. 
 It can accept files, a environment variable GRUB_INIT_TUNE, or a somewhat janky 
@@ -41,10 +41,10 @@ The notes were tuned to A4 or 440Hz based off of the equal tempered scale. While
 you can change the base note using Fo and FoOCTA, the effect is probably minimal.
 (www.phy.mtu.edu/~suits/NoteFreqCalcs.html)
 
-######GRUB_INIT_TUNE Format:######
+######GRUB_INIT_TUNE Format:
 <tempo> <freq> <duration> <freq> <duration>
 
-######Custom Janky Format:######
+######Custom Janky Format:
 <tempo> <note>*<duration> <note>*<duration>
 
 Notes on custom format:
