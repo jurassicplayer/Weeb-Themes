@@ -1,7 +1,7 @@
 
 Weeb-Themes
 =============
-A Weeaboo's Repository for Miscellaneous Theme-related Things
+### A Weeaboo's Repository for Miscellaneous Theme-related Things
 
 This repository contains a variety of SDDM/KSplash/GTK/Grub themes in various states of work-in-progress.
 For your convenience, an "install script" is included...aka, it's just a cp line.
