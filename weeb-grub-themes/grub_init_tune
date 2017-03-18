@@ -1,0 +1,173 @@
+#!/bin/bash
+
+##################################################################
+# Grub Init Tunes {{{
+##################################################################
+# Arpeggio - Major
+#GRUB_INIT_TUNE="2000 400 4 0 1 500 4 0 1 600 4 0 1 800 6"
+# Close Encounters
+#GRUB_INIT_TUNE="220 900 2 1000 2 800 2 400 2 600 3"
+# Feel Good Inc
+#GRUB_INIT_TUNE="300 369 2 329 2 82 1 0 2 82 1 92 1 98 1 0 1 130 1 0 1 123 7"
+# Fur Elise
+#GRUB_INIT_TUNE="480 420 1 400 1 420 1 400 1 420 1 315 1 370 1 335 1 282 3 180 1 215 1 282 1 315 3 213 1 262 1 315 1 335 3 213 1 420 1 400 1 420 1 400 1 420 1 315 1 370 1 335 1 282 3 180 1 215 1 282 1 315 3 213 1 330 1 315 1 282 3"
+# KonoSuba2 ED
+#GRUB_INIT_TUNE="7680 784 32 1047 16 0 16 1047 32 1175 32 1319 32 1568 32 0 32 1568 32 1760 32 1760 32 2093 32 1760 32 1568 128 1760 32 1760 32 2093 32 1760 32 1568 16 0 16 1568 16 0 16 1319 64 1175 32 1047 32 1175 32 1319 32 1175 128"
+# Mario Mushroom
+#GRUB_INIT_TUNE="1750 523 1 392 1 523 1 659 1 784 1 1047 1 784 1 415 1 523 1 622 1 831 1 622 1 831 1 1046 1 1244 1 1661 1 1244 1 466 1 587 1 698 1 932 1 1195 1 1397 1 1865 1 1397 1"
+# Mario Theme
+#GRUB_INIT_TUNE="1000 334 1 334 1 0 1 334 1 0 1 261 1 334 1 0 1 392 2 0 4 196 2"
+# Mighty Morphin Power Rangers Communicator
+#GRUB_INIT_TUNE="12288 659 64 659 64 587 32 659 64 784 64 659 64"
+# On Wisconsin!
+#GRUB_INIT_TUNE="600 294 5 277 2 330 4 294 5"
+# PokeCenter
+#GRUB_INIT_TUNE="288 880 1 0 1 880 1 0 1 880 1 698 1 1046 1"
+# Rick and Morty - Intro 1
+#GRUB_INIT_TUNE="300 466 3 554 1 523 1 622 1 415 1 369 1 349 4"
+# Rick and Morty - Intro 2
+#GRUB_INIT_TUNE="300 466 3 554 1 523 1 622 1 830 1 739 1 698 4"
+# Shave and a Haircut
+#GRUB_INIT_TUNE="400 523 2 392 1 392 1 440 2 392 2 1 2 494 2 523 2"
+# Star Wars - Imperial March
+#GRUB_INIT_TUNE="480 440 4 440 4 440 4 349 3 523 1 440 4 349 3 523 1 440 8 659 4 659 4 659 4 698 3 523 1 415 4 349 3 523 1 440 8"
+# Twinkle, Twinkle
+#GRUB_INIT_TUNE="300 294 1 294 1 440 1 440 1 494 1 494 1 440 2"
+# U Can't Touch This
+#GRUB_INIT_TUNE="300 147 2 130 1 123 1 110 1 440 1 440 1 82 1 98 1 392 1 392 1 123 1 110 1 440 1"
+#################################################################}}}
+# Functions {{{
+#################################################################
+# - Settings {{{
+# www.phy.mtu.edu/~suits/NoteFreqCalcs.html
+# Fixed note Fo for frequency table calculation of an equal tempered scale in Hz.
+# Basic formula:
+#   Fn = Fo * (a)^n
+# Fn = Frequency of n half steps away from base note
+# Fo = Base frequency note
+# n = Number of half steps away target note is from base note. (Higher note = positive n, lower note = negative n)
+# a = (2)^(1/12) = 1.059463094359...
+FoOCTA=4
+Fo=440
+a=1.059463094359
+sep='*'
+maxNote=64
+#}}}
+# gen-tune function {{{
+function gen-tune() {
+    TEMPO=""
+    FULL=""
+    DURA="$maxNote"
+    GRUB_INIT_TUNE=""
+    for VAL in "$@"; do
+        # Collect values into variables
+        if [ "$TEMPO" == "" ]; then
+            TEMPO=$((VAL * maxNote))
+            GRUB_INIT_TUNE="$TEMPO"
+        elif [ "$FULL" == "" ];then 
+            FULL=$VAL;
+        fi;
+        
+        # Decompile note notation (ex. E4*4 = quarter note E4, C#6*16 = sixteenth note C#6)
+        if [ -n "$FULL" ];then 
+            while IFS=$sep read -ra ARRY; do
+                STEP=0
+                FREQ=""
+                TEMPNOTE="${ARRY[0]}"
+                # Set target note
+                NOTE="${TEMPNOTE:0:1}"
+                # Set target octave
+                if [ "${#TEMPNOTE}" == 3 ]; then
+                    OCTA="${TEMPNOTE:2:1}"
+                    ((STEP++))
+                elif [ "${#TEMPNOTE}" == 1 ]; then
+                    FREQ=0
+                else
+                    OCTA="${TEMPNOTE:1:1}"
+                fi;
+                # Calculate number of half steps to target note
+                if [ "$NOTE" == "B" ];then
+                    ((STEP-=10))
+                elif [ "$NOTE" == "C" ];then
+                    ((STEP-=9))
+                elif [ "$NOTE" == "D" ];then
+                    ((STEP-=7))
+                elif [ "$NOTE" == "E" ];then
+                    ((STEP-=5))
+                elif [ "$NOTE" == "F" ];then
+                    ((STEP-=4))
+                elif [ "$NOTE" == "G" ];then
+                    ((STEP-=2))
+                fi;
+                # Calculate number of half steps to target octave
+                (( STEP+=$(( (OCTA - FoOCTA)*12 )) ))
+                # Set frequency of target note
+                if [ -z "$FREQ" ]; then
+                    FREQ=$(bc -l <<< "$Fo*($a^$STEP)")
+                fi;
+                FREQ=$(printf "%.0f\n" "$FREQ")
+                
+                # Calculate target duration
+                if [ -n "${ARRY[1]}" ]; then
+                    DURA=$(bc -l <<< "(4*$maxNote)/${ARRY[1]}")
+                    DURA=$(printf "%.0f\n" "$DURA")
+                else
+                    :
+                fi;
+                GRUB_INIT_TUNE="$GRUB_INIT_TUNE $FREQ $DURA"
+            done <<< "$FULL"
+            FULL=""
+        fi;
+    done
+    }
+#}}}
+# test-tune function {{{
+function test-tune() {
+    TEMPO=""
+    FREQ=""
+    DURA=""
+    TUNE=""
+    for VAL in $GRUB_INIT_TUNE; do
+        # Collect values into variables
+        if [ "$TEMPO" == "" ]; then
+            TEMPO=$(( 60000 / VAL ))
+        elif [ "$FREQ" == "" ];then 
+            FREQ=$VAL;
+        elif [ "$DURA" == "" ];then 
+            DURA=$VAL;
+        fi;
+        
+        # Replace frequency 0Hz to 1Hz (beep doesn't like 0Hz)
+        if [ "$FREQ" == 0 ];then
+            FREQ=1;
+        fi;
+        
+        # Build TUNE and reset variables
+        if [ -n "$FREQ" ] && [ -n "$DURA" ]; then
+            if [ "$TUNE" == "" ]; then
+                TUNE=" -d $TEMPO -f $FREQ -l $((TEMPO * DURA))"
+            else
+                TUNE="$TUNE -n -f $FREQ -l $((TEMPO * DURA))"
+            fi
+            FREQ=""
+            DURA=""
+        fi;
+    done
+    }
+#}}}
+# Main function {{{
+if [ -n "$GRUB_INIT_TUNE" ]; then
+    :
+elif [ $# -eq 0 ]; then
+    source /etc/default/grub
+elif [ $# -eq 1 ]; then
+    gen-tune $(<$1)
+else
+    gen-tune "$@"
+fi;
+test-tune
+echo "GRUB_INIT_TUNE=\"$GRUB_INIT_TUNE\""
+sudo beep $TUNE
+#}}}
+#################################################################}}}
+# vim:foldmethod=marker:foldlevel=0
