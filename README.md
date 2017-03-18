@@ -42,10 +42,10 @@ you can change the base note using Fo and FoOCTA, the effect is probably minimal
 (www.phy.mtu.edu/~suits/NoteFreqCalcs.html)
 
 ##### GRUB_INIT_TUNE Format:
-<tempo> <freq> <duration> <freq> <duration>
+`<tempo> <freq> <duration> <freq> <duration>`
 
 ##### Custom Janky Format:
-<tempo> <note>*<duration> <note>*<duration>
+`<tempo> <note>*<duration> <note>*<duration>`
 
 Notes on custom format:
 - Tempo is the normal tempo you can find on any sheet music (BPM)
