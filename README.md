@@ -7,10 +7,7 @@ This repository contains a variety of SDDM/KSplash/GTK/Grub themes in various st
 For your convenience, an "install script" is included...aka, it's just a cp line.
 In theory, it will ask for sudo to dump the files into /usr/share/\<place>. You can look at the script "in-depth" if you are afraid of something malicious.
 
-As a short note, all of the QML/QT themes were written importing the latest
-libraries from QT5.7 (QtQuick 2.7, etc.), though the themes don't require anything from said latest libraries. As such, if you aren't using the latest QT5.7, you can change the import lines to the closest lower whole number (aka import QtQuick 2.7 -> import QtQuick 2.0) and they should work on any QT5 version.
-
-
+As a short note, all of the QML/QT themes were written importing the latest libraries from QT5.7 (QtQuick 2.7, etc.), though the themes don't require anything from said latest libraries. As such, if you aren't using the latest QT5.7, you can change the import lines to the closest lower whole number (aka import QtQuick 2.7 -> import QtQuick 2.0) and they should work on any QT5 version.
 
 #### Weeb-SDDM-Themes
 - Dependencies:
@@ -26,20 +23,11 @@ libraries from QT5.7 (QtQuick 2.7, etc.), though the themes don't require anythi
     - qtquick
 
 #### Weeb-Grub-Themes
-Currently there is only a single script for previewing/assisting in creating
-grub_init_tune originally from http://www.iavit.org/~john/debian/grub.html. 
-It can accept files, a environment variable GRUB_INIT_TUNE, or a somewhat janky 
-custom notation that removes most thinking. 
+Currently there is only a single script for previewing/assisting in creating grub_init_tune ([original script](http://www.iavit.org/~john/debian/grub.html)). It can accept files, a environment variable GRUB_INIT_TUNE, or a somewhat janky custom notation that removes most thinking. 
 
-There is some slight customizations that can be made regarding the separator 
-for the custom format and the granularity of the notes using the "sep" and 
-"maxNote" variables respectively. It is optimal to set the maxNote to the lowest
-duration note for nice small numbers (ex. 8 for 8th notes up, 16 for 16th notes 
-up, 64 for 64th notes up, etc.)
+There is some slight customizations that can be made regarding the separator for the custom format and the granularity of the notes using the "sep" and "maxNote" variables respectively. It is optimal to set the maxNote to the lowest duration note for nice small numbers (ex. 8 for 8th notes up, 16 for 16th notes up, 64 for 64th notes up, etc.)
 
-The notes were tuned to A4 or 440Hz based off of the equal tempered scale. While
-you can change the base note using Fo and FoOCTA, the effect is probably minimal.
-(www.phy.mtu.edu/~suits/NoteFreqCalcs.html)
+The notes were tuned to A4 or 440Hz based off of the [equal tempered scale](www.phy.mtu.edu/~suits/NoteFreqCalcs.html). While you can change the base note using Fo and FoOCTA, the effect is probably minimal.
 
 ##### GRUB_INIT_TUNE Format:
 `<tempo> <freq> <duration> <freq> <duration>`
