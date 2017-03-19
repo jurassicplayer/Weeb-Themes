@@ -31,11 +31,8 @@ As a short note, all of the QML/QT themes were written importing the latest libr
 
     The notes were tuned to A4 or 440Hz based off of the [equal tempered scale](www.phy.mtu.edu/~suits/NoteFreqCalcs.html). While you can change the base note using Fo and FoOCTA, the effect is probably minimal.
 
-    GRUB_INIT_TUNE Format:
-    `<tempo> <freq> <duration> <freq> <duration>...`
-
-    Custom Janky Format:
-    `<tempo> <note>*<duration> <note>*<duration>...`
+    GRUB_INIT_TUNE Format: `<tempo> <freq> <duration> <freq> <duration>...`
+    Custom Janky Format: `<tempo> <note>*<duration> <note>*<duration>...`
 
 - Notes on custom format:
     - Tempo is the normal tempo you can find on any sheet music (BPM)
