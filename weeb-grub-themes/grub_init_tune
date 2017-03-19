@@ -67,6 +67,7 @@ function gen-tune() {
                 SKIP=1
             else
                 TEMPO=$((defaultTempo * minDuration))
+                echo "Invalid tempo, using defaultTempo: $defaultTempo BPM"
             fi;
             GRUB_INIT_TUNE="$TEMPO"
             DURATION="$minDuration"
