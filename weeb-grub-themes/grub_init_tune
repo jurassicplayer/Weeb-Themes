@@ -64,70 +64,73 @@ function gen-tune() {
         if [ "$TEMPO" == "" ]; then
             if [[ "$VAL" =~ ^[0-9]+$ ]]; then
                 TEMPO=$((VAL * minDuration))
+                SKIP=1
             else
                 TEMPO=$((defaultTempo * minDuration))
             fi;
             GRUB_INIT_TUNE="$TEMPO"
             DURATION="$minDuration"
-        else
-            # Separate by separator into array of {note, duration}
-            while IFS=$sep read -ra ARRAY; do
-                # If there is a duration, set new duration if valid.
-                if [ -n "${ARRAY[1]}" ]; then
-                    if [[ "${ARRAY[1]}" =~ $re ]]; then
-                        DURATION=$(bc -l <<< "(4*$minDuration)/${ARRAY[1]}")
-                        DURATION=$(printf "%.0f\n" "$DURATION")
-                    else
-                        echo "Invalid duration: $VAL"
-                    fi;
-                fi;
-                
-                # If there is a notation and notation matches regex pattern
-                if [ -n "${ARRAY[0]}" ]; then
-                    if [[ "${ARRAY[0]}" =~ ^[a-gA-G](#)?([0-9])?$ ]]; then
-                        FREQUENCY=""
-                        STEP=0
-                        # Determine the number of steps from base note
-                        for (( i=0; i<${#ARRAY[0]}; i++ )); do
-                            CHAR="${ARRAY[0]:$i:1}"
-                            CHAR="${CHAR^^}"
-                            if [ "$CHAR" == "A" ]; then
-                                :
-                            elif [ "$CHAR" == "B" ]; then
-                                ((STEP-=10))
-                            elif [ "$CHAR" == "C" ]; then
-                                ((STEP-=9))
-                            elif [ "$CHAR" == "D" ]; then
-                                ((STEP-=7))
-                            elif [ "$CHAR" == "E" ]; then
-                                ((STEP-=5))
-                            elif [ "$CHAR" == "F" ]; then
-                                ((STEP-=4))
-                            elif [ "$CHAR" == "G" ]; then
-                                ((STEP-=2))
-                            elif [ "$CHAR" == "#" ]; then
-                                ((STEP++))
-                            elif [ "$CHAR" == "R" ]; then
-                                FREQUENCY=0
-                            elif [[ "$CHAR" =~ ^[0-9]+$ ]]; then
-                                ((octaveOffset=$(( (CHAR - defaultOctave)*12 )) ))
-                            fi;
-                        done
-                        if [ -n "$octaveOffset" ]; then
-                            ((STEP+="$octaveOffset"))
-                        fi;
-                        if [ -z "$FREQUENCY" ]; then
-                            FREQUENCY=$(bc -l <<< "440*(1.059463094359^$STEP)")
-                            FREQUENCY=$(printf "%.0f\n" "$FREQUENCY")
-                        fi;
-                    else
-                        echo "Invalid notation: $VAL"
-                        FREQUENCY=440
-                    fi;
-                fi;
-                GRUB_INIT_TUNE="$GRUB_INIT_TUNE $FREQUENCY $DURATION"
-            done <<< "$VAL"
+            if [ -n "$SKIP" ]; then
+                continue
+            fi;
         fi;
+        # Separate by separator into array of {note, duration}
+        while IFS=$sep read -ra ARRAY; do
+            # If there is a duration, set new duration if valid.
+            if [ -n "${ARRAY[1]}" ]; then
+                if [[ "${ARRAY[1]}" =~ $re ]]; then
+                    DURATION=$(bc -l <<< "(4*$minDuration)/${ARRAY[1]}")
+                    DURATION=$(printf "%.0f\n" "$DURATION")
+                else
+                    echo "Invalid duration: $VAL"
+                fi;
+            fi;
+            
+            # If there is a notation and notation matches regex pattern
+            if [ -n "${ARRAY[0]}" ]; then
+                if [[ "${ARRAY[0]}" =~ ^[a-gA-G](#)?([0-9])?$ ]]; then
+                    FREQUENCY=""
+                    STEP=0
+                    # Determine the number of steps from base note
+                    for (( i=0; i<${#ARRAY[0]}; i++ )); do
+                        CHAR="${ARRAY[0]:$i:1}"
+                        CHAR="${CHAR^^}"
+                        if [ "$CHAR" == "A" ]; then
+                            :
+                        elif [ "$CHAR" == "B" ]; then
+                            ((STEP-=10))
+                        elif [ "$CHAR" == "C" ]; then
+                            ((STEP-=9))
+                        elif [ "$CHAR" == "D" ]; then
+                            ((STEP-=7))
+                        elif [ "$CHAR" == "E" ]; then
+                            ((STEP-=5))
+                        elif [ "$CHAR" == "F" ]; then
+                            ((STEP-=4))
+                        elif [ "$CHAR" == "G" ]; then
+                            ((STEP-=2))
+                        elif [ "$CHAR" == "#" ]; then
+                            ((STEP++))
+                        elif [ "$CHAR" == "R" ]; then
+                            FREQUENCY=0
+                        elif [[ "$CHAR" =~ ^[0-9]+$ ]]; then
+                            ((octaveOffset=$(( (CHAR - defaultOctave)*12 )) ))
+                        fi;
+                    done
+                    if [ -n "$octaveOffset" ]; then
+                        ((STEP+="$octaveOffset"))
+                    fi;
+                    if [ -z "$FREQUENCY" ]; then
+                        FREQUENCY=$(bc -l <<< "440*(1.059463094359^$STEP)")
+                        FREQUENCY=$(printf "%.0f\n" "$FREQUENCY")
+                    fi;
+                else
+                    echo "Invalid notation: $VAL"
+                    FREQUENCY=440
+                fi;
+            fi;
+            GRUB_INIT_TUNE="$GRUB_INIT_TUNE $FREQUENCY $DURATION"
+        done <<< "$VAL"
     done
     }
 #}}}
