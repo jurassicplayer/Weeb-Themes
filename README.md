@@ -27,9 +27,9 @@ As a short note, all of the QML/QT themes were written importing the latest libr
 - Notes:
     Currently there is only a single script for previewing/assisting in creating grub_init_tune ([original script](http://www.iavit.org/~john/debian/grub.html)). It can accept files, a environment variable GRUB_INIT_TUNE, or a somewhat janky custom notation that removes most thinking. 
 
-    There is some slight customizations that can be made regarding the separator for the custom format and the granularity of the notes using the "sep" and "maxNote" variables respectively. It is optimal to set the maxNote to the lowest duration note for nice small numbers (ex. 8 for 8th notes up, 16 for 16th notes up, 64 for 64th notes up, etc.)
+    The separator ('\*'), default octave (octave 4), and default tempo (120 BPM) can be customized.
 
-    The notes were tuned to A4 or 440Hz based off of the [equal tempered scale](www.phy.mtu.edu/~suits/NoteFreqCalcs.html). While you can change the base note using Fo and FoOCTA, the effect is probably minimal.
+    The notes were tuned to A4 or 440Hz based off of the [equal tempered scale](www.phy.mtu.edu/~suits/NoteFreqCalcs.html).
 
     GRUB_INIT_TUNE Format: `<tempo> <freq> <duration> <freq> <duration>...`
     Custom Janky Format: `<tempo> <note>*<duration> <note>*<duration>...`
