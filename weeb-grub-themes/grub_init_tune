@@ -62,10 +62,11 @@ function gen-tune() {
             fi;
         done <<< "$VAL"
     done
-    minDuration=1
-    for n in "${durationArray[@]}"; do
-        (( n > minDuration )) && minDuration=$n
-    done
+    durationArray+=( 1 )
+    oldIFS=$IFS; IFS=$'\n'
+    minDuration=$(echo "${durationArray[*]}" | sort -nr | head -n1)
+    IFS=$oldIFS
+    
     
     # Parse arguments into grub_init_tune
     for VAL in "$@"; do
