@@ -33,6 +33,7 @@ As a short note, all of the QML/QT themes were written importing the latest libr
 
     GRUB_INIT_TUNE Format:
         `<tempo> <freq> <duration> <freq> <duration>...`
+        
     Custom Janky Format:
         `<tempo> <note>*<duration> <note>*<duration>...`
 
