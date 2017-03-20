@@ -99,7 +99,7 @@ function gen-tune() {
             
             # If there is a notation and notation matches regex pattern
             if [ -n "${ARRAY[0]}" ]; then
-                if [[ "${ARRAY[0]}" =~ ^[a-gA-G](#)?([0-9])?$ ]]; then
+                if [[ "${ARRAY[0]}" =~ ^[a-gA-GrR](#)?([0-9])?$ ]]; then
                     FREQUENCY=""
                     STEP=0
                     # Determine the number of steps from base note
@@ -109,7 +109,7 @@ function gen-tune() {
                         if [ "$CHAR" == "A" ]; then
                             :
                         elif [ "$CHAR" == "B" ]; then
-                            ((STEP-=10))
+                            ((STEP+=2))
                         elif [ "$CHAR" == "C" ]; then
                             ((STEP-=9))
                         elif [ "$CHAR" == "D" ]; then
