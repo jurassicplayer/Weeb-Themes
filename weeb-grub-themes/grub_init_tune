@@ -51,6 +51,7 @@
 # gen-tune function {{{
 function gen-tune() {
     sep='*'
+    commentSep='"'
     defaultOctave=4
     defaultTempo=120
     
@@ -70,6 +71,18 @@ function gen-tune() {
     
     # Parse arguments into grub_init_tune
     for VAL in "$@"; do
+        # Check if there is any commented out lines
+        if [[ "$VAL" =~ $commentSep || -n "$COMMENT" ]]; then
+            if [[ "$VAL" =~ $commentSep ]]; then
+                if [ -n "$COMMENT" ]; then
+                    COMMENT=""
+                else
+                    COMMENT=1
+                fi;
+            fi;
+            continue
+        fi;
+        
         # Set tempo if first argument is a number, else set defaultTempo
         if [ "$TEMPO" == "" ]; then
             if [[ "$VAL" =~ ^[0-9]+$ ]]; then
