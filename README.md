@@ -35,10 +35,9 @@ As a short note, all of the QML/QT themes were written importing the latest libr
     Custom Janky Format: `<tempo> <note>*<duration> <note>*<duration>...`
 
 - Notes on custom format:
-    - Tempo is the normal tempo you can find on any sheet music (BPM)
-    - Note notations are in the vein of "NoteOctave*Duration" (ex. C4\*4 = Middle C quarter note)
-    - Parser is literally terrible and only counts the length of the "NoteOctave"
-        - Sharps are any NoteOctave that is 3 characters long (ex. A.5*4)
-        - Rests are any NoteOctave that is 1 character long (ex. R\*8)
-        - Duration can be carried over from the last note (ex. C4\*8 D4 E4 A4 G5\*4 B5)
+    - Case-insensitive
+    - Tempo argument is the normal tempo you can find on any sheet music (BPM)
+    - Note notations are in the vein of "Note#Octave*Duration" (ex. C4\*4 = Middle C quarter note)
+    - Current octave and duration can be carried over from the previous note (ex. C4\*8 D4 E A G5\*4 B)
+    - Missing tempo/octave/duration or invalid notation are handled with either default or previous notation.
     - It is WAY easier to use than a frequency table and fudging with the tempo.
