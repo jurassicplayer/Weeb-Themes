@@ -44,21 +44,30 @@
 # Basic formula:
 #   Fn = Fo * (a)^n
 # Fn = Frequency of n half steps away from base note
-# Fo = Base frequency note
+# Fo = Base frequency note (440Hz A4)
 # n = Number of half steps away target note is from base note. (Higher note = positive n, lower note = negative n)
 # a = (2)^(1/12) = 1.059463094359...
-FoOCTA=4
-Fo=440
-a=1.059463094359
-sep='*'
-maxNote=64
 #}}}
 # gen-tune function {{{
 function gen-tune() {
     sep='*'
     defaultOctave=4
     defaultTempo=120
-    minDuration=64
+    
+    # Parse arguments for highest duration (shortest note) to scale the default tempo value
+    for VAL in "$@"; do
+        while IFS=$sep read -ra ARRAY; do
+            if [ -n "${ARRAY[1]}" ]; then
+                durationArray+=( "${ARRAY[1]}")
+            fi;
+        done <<< "$VAL"
+    done
+    minDuration=1
+    for n in "${durationArray[@]}"; do
+        (( n > minDuration )) && minDuration=$n
+    done
+    
+    # Parse arguments into grub_init_tune
     for VAL in "$@"; do
         # Set tempo if first argument is a number, else set defaultTempo
         if [ "$TEMPO" == "" ]; then
@@ -115,11 +124,14 @@ function gen-tune() {
                         elif [ "$CHAR" == "R" ]; then
                             FREQUENCY=0
                         elif [[ "$CHAR" =~ ^[0-9]+$ ]]; then
-                            ((octaveOffset=$(( (CHAR - defaultOctave)*12 )) ))
+                            ((octaveOffset=$(( (CHAR - 4)*12 )) ))
                         fi;
                     done
                     if [ -n "$octaveOffset" ]; then
                         ((STEP+="$octaveOffset"))
+                    else
+                        ((STEP+=$(( (defaultOctave-4)*12 )) ))
+                        echo "$STEP"
                     fi;
                     if [ -z "$FREQUENCY" ]; then
                         FREQUENCY=$(bc -l <<< "440*(1.059463094359^$STEP)")
