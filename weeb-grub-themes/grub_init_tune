@@ -102,7 +102,7 @@ function gen-tune() {
         while IFS=$sep read -ra ARRAY; do
             # If there is a duration, set new duration if valid.
             if [ -n "${ARRAY[1]}" ]; then
-                if [[ "${ARRAY[1]}" =~ $re ]]; then
+                if [[ "${ARRAY[1]}" =~ ^[0-9]+$ ]]; then
                     DURATION=$(bc -l <<< "(4*$minDuration)/${ARRAY[1]}")
                     DURATION=$(printf "%.0f\n" "$DURATION")
                 else
@@ -145,7 +145,6 @@ function gen-tune() {
                         ((STEP+="$octaveOffset"))
                     else
                         ((STEP+=$(( (defaultOctave-4)*12 )) ))
-                        echo "$STEP"
                     fi;
                     if [ -z "$FREQUENCY" ]; then
                         FREQUENCY=$(bc -l <<< "440*(1.059463094359^$STEP)")
@@ -201,7 +200,7 @@ if [ -n "$GRUB_INIT_TUNE" ]; then
 elif [ $# -eq 0 ]; then
     source /etc/default/grub
 elif [ $# -eq 1 ]; then
-    gen-tune $(<$1)
+    gen-tune "$(<$1)"
 else
     gen-tune "$@"
 fi;
